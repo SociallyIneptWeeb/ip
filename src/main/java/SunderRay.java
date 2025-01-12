@@ -28,33 +28,67 @@ public class SunderRay {
 
         printDivider();
         System.out.printf("""
-                Ray: H-Hey! It's not like I want to introduce myself or anything, but... my name is %s. (¬`‸´¬)
-                W-What do you want me to do for you, huh? It's not like I care or anything! (💢,,>﹏<,,) b-baka!
+                Ray: H-Hey! It's not like I want to introduce myself or anything, but... my name is
+                %s. (¬`‸´¬) W-What do you want me to do for you, huh? It's not like I care
+                or anything! (💢,,>﹏<,,) b-baka!
                 """, name);
     }
 
     public static void converse() {
         Scanner scanner = new Scanner(System.in);
+        Task[] tasks = new Task[100];
+        int numTasks = 0;
 
-        while (true) {
+        loop: while (true) {
             printDivider();
             System.out.print("You: ");
             String userInput = scanner.nextLine();
             printDivider();
 
-            if (userInput.equalsIgnoreCase("bye")) {
-                break;
+            System.out.print("Ray: ");
+
+            switch (userInput) {
+                case "bye":
+                    break loop;
+
+                case "list":
+                    if (numTasks == 0) {
+                        System.out.println("""
+                                Hmph, you don’t have any tasks right now. Not that I’m impressed or anything!
+                                I guess even you can keep things under control... sometimes.""");
+                    } else {
+                        System.out.println("""
+                                H-Here! These are the tasks you told me to remember. It's not like I wanted to help
+                                you or anything. I just didn’t want you messing things up, okay?
+                                S-So don’t get the wrong idea!
+                                """);
+
+                        for (int i = 0; i < numTasks; i++) {
+                            System.out.printf("%d. %s\n", i + 1, tasks[i]);
+                        }
+                    }
+                    break;
+
+                case "":
+                    System.out.print("What was that? If you have something to say, then speak up!");
+                    break;
+
+                default:
+                    tasks[numTasks] = new Task(userInput);
+                    numTasks++;
+                    System.out.printf("""
+                            Ugh, fine! I went ahead and added the task '%s' for you, okay?
+                            I just have to remember it for you, right?
+                            """, userInput);
             }
-
-            System.out.println("Ray: " + userInput);
         }
-
     }
 
     public static void sayBye() {
         System.out.println("""
-                Ray: Ugh, fine! Bye or whatever. I-I mean, it's not like I want to see you again or anything...
-                But, well, if you show up, I guess it wouldn’t be that bad. S-See you soon, maybe! ૮₍ ˶>⤙<˶  ₎ა""");
+                Sure, bye or whatever. I-I mean, it's not like I want to see you again or
+                anything... But, well, if you show up, I guess it wouldn’t be that bad.
+                S-See you soon, maybe! ૮₍ ˶>⤙<˶  ₎ა""");
     }
 
     public static void main(String[] args) {
