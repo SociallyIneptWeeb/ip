@@ -1,0 +1,10 @@
+todo buy groceries
+deadline presentation slides /by next friday
+event idol show /from sat 3pm /to 5pm
+mark 2
+mark 3
+list
+unmark 2
+list
+blah
+bye
