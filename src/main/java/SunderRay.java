@@ -74,12 +74,35 @@ public class SunderRay {
                     break;
 
                 default:
-                    tasks[numTasks] = new Task(userInput);
-                    numTasks++;
-                    System.out.printf("""
-                            Ugh, fine! I went ahead and added the task '%s' for you, okay?
-                            I just have to remember it for you, right?
-                            """, userInput);
+                    if (userInput.startsWith("mark")) {
+                        // TODO: Add exception handling
+                        int taskId = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                        Task task = tasks[taskId];
+                        task.setIsDone(true);
+                        System.out.print("""
+                                W-Well, nice job, I guess! I marked this task as done for you—
+                                Not that I’m impressed or anything!
+                                """);
+                        System.out.println(task);
+                    } else if (userInput.startsWith("unmark")) {
+                        // TODO: Add exception handling
+                        int taskId = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                        Task task = tasks[taskId];
+                        task.setIsDone(false);
+                        System.out.print("""
+                                I’ve marked this task as not done yet. It’s not like I care if you finish it or not—
+                                I just didn’t want to see it sitting there all messy!
+                                S-So hurry up and deal with it already, okay?
+                                """);
+                        System.out.println(task);
+                    } else {
+                        tasks[numTasks] = new Task(userInput);
+                        numTasks++;
+                        System.out.printf("""
+                                Ugh, fine! I went ahead and added the task '%s' for you, okay?
+                                I just have to remember it for you, right?
+                                """, userInput);
+                    }
             }
         }
     }
