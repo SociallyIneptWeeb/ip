@@ -3,8 +3,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SunderRay {
+    public static String UNRECOGNIZED_RESPONSE = """
+            W-What?! I couldn’t understand what you said, okay?
+            It’s not like it’s my fault or anything!
+            Just… ugh, repeat it already, and don’t make me wait!""";
+
     public static void printDivider() {
         System.out.println("────────────────────────────────────────────────────────────────────────────────────────");
     }
@@ -34,10 +41,22 @@ public class SunderRay {
                 """, name);
     }
 
+    public static void addTask(Task[] tasks, Task task, int numTasks) {
+        tasks[numTasks] = task;
+        System.out.println("I went ahead and added the task. I just have to remember it for you, right?");
+        System.out.println(task);
+        System.out.printf(
+                "You have %d %s in the list, in case you were wondering.\n",
+                numTasks + 1,
+                numTasks > 0 ? "tasks" : "task");
+    }
+
     public static void converse() {
         Scanner scanner = new Scanner(System.in);
         Task[] tasks = new Task[100];
         int numTasks = 0;
+        Pattern eventpattern = Pattern.compile("event (.+?) /from (.+?) /to (.+)");
+        Pattern deadlinePattern = Pattern.compile("deadline (.+?) /by (.+)");
 
         loop: while (true) {
             printDivider();
@@ -47,7 +66,12 @@ public class SunderRay {
 
             System.out.print("Ray: ");
 
-            switch (userInput) {
+            String action = userInput.split(" ")[0];
+            int taskId;
+            Task task;
+            Matcher matcher;
+
+            switch (action) {
                 case "bye":
                     break loop;
 
@@ -69,25 +93,25 @@ public class SunderRay {
                     }
                     break;
 
-                case "":
-                    System.out.print("What was that? If you have something to say, then speak up!");
-                    break;
-
-                default:
-                    if (userInput.startsWith("mark")) {
-                        // TODO: Add exception handling
-                        int taskId = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                        Task task = tasks[taskId];
+                case "mark":
+                    try {
+                        taskId = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                        task = tasks[taskId];
                         task.setIsDone(true);
                         System.out.print("""
                                 W-Well, nice job, I guess! I marked this task as done for you—
                                 Not that I’m impressed or anything!
                                 """);
                         System.out.println(task);
-                    } else if (userInput.startsWith("unmark")) {
-                        // TODO: Add exception handling
-                        int taskId = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                        Task task = tasks[taskId];
+                    } catch (NumberFormatException e) {
+                        System.out.println(UNRECOGNIZED_RESPONSE);
+                    }
+                    break;
+
+                case "unmark":
+                    try {
+                        taskId = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                        task = tasks[taskId];
                         task.setIsDone(false);
                         System.out.print("""
                                 I’ve marked this task as not done yet. It’s not like I care if you finish it or not—
@@ -95,14 +119,41 @@ public class SunderRay {
                                 S-So hurry up and deal with it already, okay?
                                 """);
                         System.out.println(task);
-                    } else {
-                        tasks[numTasks] = new Task(userInput);
-                        numTasks++;
-                        System.out.printf("""
-                                Ugh, fine! I went ahead and added the task '%s' for you, okay?
-                                I just have to remember it for you, right?
-                                """, userInput);
+                    } catch (NumberFormatException e) {
+                        System.out.println(UNRECOGNIZED_RESPONSE);
                     }
+                    break;
+
+                case "todo":
+                    task = new ToDo(userInput.split(" ", 2)[1]);
+                    addTask(tasks, task, numTasks);
+                    numTasks++;
+                    break;
+
+                case "deadline":
+                    matcher = deadlinePattern.matcher(userInput);
+                    if (matcher.find()) {
+                        task = new Deadline(matcher.group(1), matcher.group(2));
+                        addTask(tasks, task, numTasks);
+                        numTasks++;
+                    } else {
+                        System.out.println(UNRECOGNIZED_RESPONSE);
+                    }
+                    break;
+
+                case "event":
+                    matcher = eventpattern.matcher(userInput);
+                    if (matcher.find()) {
+                        task = new Event(matcher.group(1), matcher.group(2), matcher.group(3));
+                        addTask(tasks, task, numTasks);
+                        numTasks++;
+                    } else {
+                        System.out.println(UNRECOGNIZED_RESPONSE);
+                    }
+                    break;
+
+                default:
+                    System.out.println(UNRECOGNIZED_RESPONSE);
             }
         }
     }
