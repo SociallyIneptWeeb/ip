@@ -6,10 +6,12 @@ mark 2
 mark 3
 list
 unmark 2
+delete 1
 list
 blah
 mark blah
 unmark 4
+delete -1
 todo
 deadline blah
 event blah

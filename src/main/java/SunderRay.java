@@ -24,11 +24,11 @@ public class SunderRay {
     public static void addTask(ArrayList<Task> tasks, Task task) {
         tasks.add(task);
         System.out.println("I went ahead and added the task. I just have to remember it for you, right?");
-        System.out.println(task);
+        System.out.printf("\t%s%n", task);
         System.out.printf(
-                "You have %d %s in the list, in case you were wondering.%n",
+                "Now you have %d %s in the list, in case you were wondering.%n",
                 tasks.size(),
-                tasks.size() > 1 ? "tasks" : "task");
+                tasks.size() == 1 ? "task" : "tasks");
     }
 
     public static void converse() {
@@ -81,6 +81,31 @@ public class SunderRay {
                         System.out.printf("""
                                 I've %sed this task for you. You're welcome I guess!%n""", action);
                         System.out.println(task);
+                    } catch (NumberFormatException e) {
+                        System.out.printf("""
+                                Ugh, seriously? Be more clear! I can’t read your mind, you know!
+                                Just… specify which task you want to %1$s as done in this format: %1$s <task-id>
+                                """, action);
+                    } catch (IndexOutOfBoundsException | NullPointerException e) {
+                        System.out.println("""
+                                Ugh, seriously?! Just pick a valid task ID already!
+                                It’s not like I enjoy pointing out your mistakes or anything…""");
+                    }
+                    break;
+
+                case "delete":
+                    try {
+                        taskId = Integer.parseInt(words[1]) - 1;
+                        task = tasks.get(taskId);
+                        tasks.remove(taskId);
+                        System.out.println("""
+                                F-Fine, I’ve deleted the task for you!
+                                I just didn’t want to see it cluttering things up, okay?!""");
+                        System.out.printf("\t%s%n", task);
+                        System.out.printf(
+                                "Now you have %d %s in the list, in case you were wondering.%n",
+                                tasks.size(),
+                                tasks.size() == 1 ? "task" : "tasks");
                     } catch (NumberFormatException e) {
                         System.out.printf("""
                                 Ugh, seriously? Be more clear! I can’t read your mind, you know!
