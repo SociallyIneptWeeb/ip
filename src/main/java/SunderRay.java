@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,20 +21,19 @@ public class SunderRay {
                 or anything! (,,>.<,,) b-baka!%n""", name);
     }
 
-    public static void addTask(Task[] tasks, Task task, int numTasks) {
-        tasks[numTasks] = task;
+    public static void addTask(ArrayList<Task> tasks, Task task) {
+        tasks.add(task);
         System.out.println("I went ahead and added the task. I just have to remember it for you, right?");
         System.out.println(task);
         System.out.printf(
                 "You have %d %s in the list, in case you were wondering.%n",
-                numTasks + 1,
-                numTasks > 0 ? "tasks" : "task");
+                tasks.size(),
+                tasks.size() > 1 ? "tasks" : "task");
     }
 
     public static void converse() {
         Scanner scanner = new Scanner(System.in);
-        Task[] tasks = new Task[100];
-        int numTasks = 0;
+        ArrayList<Task> tasks = new ArrayList<>();
         Pattern eventpattern = Pattern.compile("event (.+?) /from (.+?) /to (.+)");
         Pattern deadlinePattern = Pattern.compile("deadline (.+?) /by (.+)");
 
@@ -56,7 +56,7 @@ public class SunderRay {
                     break loop;
 
                 case "list":
-                    if (numTasks == 0) {
+                    if (tasks.isEmpty()) {
                         System.out.println("""
                                 Hmph, you don’t have any tasks right now. Not that I’m impressed or anything!
                                 I guess even you can keep things under control... sometimes.""");
@@ -65,8 +65,8 @@ public class SunderRay {
                                 H-Here! These are the tasks you told me to remember. It's not like I wanted to help
                                 you or anything. I just didn’t want you messing things up, okay?""");
 
-                        for (int i = 0; i < numTasks; i++) {
-                            System.out.printf("%d. %s%n", i + 1, tasks[i]);
+                        for (int i = 0; i < tasks.size(); i++) {
+                            System.out.printf("%d. %s%n", i + 1, tasks.get(i));
                         }
                     }
                     break;
@@ -76,7 +76,7 @@ public class SunderRay {
                 case "unmark":
                     try {
                         taskId = Integer.parseInt(words[1]) - 1;
-                        task = tasks[taskId];
+                        task = tasks.get(taskId);
                         task.setIsDone(action.equals("mark"));
                         System.out.printf("""
                                 I've %sed this task for you. You're welcome I guess!%n""", action);
@@ -86,7 +86,7 @@ public class SunderRay {
                                 Ugh, seriously? Be more clear! I can’t read your mind, you know!
                                 Just… specify which task you want to %1$s as done in this format: %1$s <task-id>
                                 """, action);
-                    } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+                    } catch (IndexOutOfBoundsException | NullPointerException e) {
                         System.out.println("""
                                 Ugh, seriously?! Just pick a valid task ID already!
                                 It’s not like I enjoy pointing out your mistakes or anything…""");
@@ -101,16 +101,14 @@ public class SunderRay {
                         break;
                     }
                     task = new ToDo(words[1]);
-                    addTask(tasks, task, numTasks);
-                    numTasks++;
+                    addTask(tasks, task);
                     break;
 
                 case "deadline":
                     matcher = deadlinePattern.matcher(userInput);
                     if (matcher.find()) {
                         task = new Deadline(matcher.group(1), matcher.group(2));
-                        addTask(tasks, task, numTasks);
-                        numTasks++;
+                        addTask(tasks, task);
                     } else {
                         System.out.println("""
                                 H-Hey! If you’re going to add a deadline, at least do it properly!
@@ -122,8 +120,7 @@ public class SunderRay {
                     matcher = eventpattern.matcher(userInput);
                     if (matcher.find()) {
                         task = new Event(matcher.group(1), matcher.group(2), matcher.group(3));
-                        addTask(tasks, task, numTasks);
-                        numTasks++;
+                        addTask(tasks, task);
                     } else {
                         System.out.println("""
                                 H-Hey! If you’re going to add an event, at least do it properly!
