@@ -23,22 +23,22 @@ Now you have 3 tasks in the list, in case you were wondering.
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: I've marked this task for you. You're welcome I guess!
-[D][X] presentation slides (by: next friday)
+	[D][X] presentation slides (by: next friday)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: I've marked this task for you. You're welcome I guess!
-[E][X] idol show (from: sat 3pm to: 5pm)
+	[E][X] idol show (from: sat 3pm to: 5pm)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: H-Here! These are the tasks you told me to remember. It's not like I wanted to help
 you or anything. I just didn’t want you messing things up, okay?
-1. [T][ ] buy groceries
-2. [D][X] presentation slides (by: next friday)
-3. [E][X] idol show (from: sat 3pm to: 5pm)
+1.  [T][ ] buy groceries
+2.  [D][X] presentation slides (by: next friday)
+3.  [E][X] idol show (from: sat 3pm to: 5pm)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: I've unmarked this task for you. You're welcome I guess!
-[D][ ] presentation slides (by: next friday)
+	[D][ ] presentation slides (by: next friday)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: F-Fine, I’ve deleted the task for you!
@@ -49,8 +49,8 @@ Now you have 2 tasks in the list, in case you were wondering.
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: H-Here! These are the tasks you told me to remember. It's not like I wanted to help
 you or anything. I just didn’t want you messing things up, okay?
-1. [D][ ] presentation slides (by: next friday)
-2. [E][X] idol show (from: sat 3pm to: 5pm)
+1.  [D][ ] presentation slides (by: next friday)
+2.  [E][X] idol show (from: sat 3pm to: 5pm)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: W-What?! I couldn’t understand what you said, okay?
@@ -59,7 +59,7 @@ Just… ugh, repeat it already, and don’t make me wait!
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: Ugh, seriously? Be more clear! I can’t read your mind, you know!
-Just… specify which task you want to mark as done in this format: mark <task-id>
+Just give it to me straight in this format: mark <task-id>
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: Ugh, seriously?! Just pick a valid task ID already!
@@ -70,16 +70,16 @@ Ray: Ugh, seriously?! Just pick a valid task ID already!
 It’s not like I enjoy pointing out your mistakes or anything…
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
-Ray: H-Hey! If you’re going to add a todo task, at least do it properly!
-Give me its details in this format: todo <description>
+Ray: Ugh, seriously? Be more clear! I can’t read your mind, you know!
+Just give it to me straight in this format: todo <description>
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
-Ray: H-Hey! If you’re going to add a deadline, at least do it properly!
-Give me its details in this format: deadline <description> /by <when>
+Ray: Ugh, seriously? Be more clear! I can’t read your mind, you know!
+Just give it to me straight in this format: deadline <description> /by <when>
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
-Ray: H-Hey! If you’re going to add an event, at least do it properly!
-Give me its details in this format: event <description> /from <when> /to <when>
+Ray: Ugh, seriously? Be more clear! I can’t read your mind, you know!
+Just give it to me straight in this format: event <description> /from <when> /to <when>
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: Sure, bye or whatever. I-I mean, it's not like I want to see you again or
