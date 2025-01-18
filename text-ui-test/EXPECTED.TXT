@@ -3,6 +3,10 @@ Sunder Ray. (¬`‸´¬) W-What do you want me to do for you, huh? It's not like
 or anything! (,,>.<,,) b-baka!
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
+Ray: Hmph, you don’t have any tasks right now. Not that I’m impressed or anything!
+I guess even you can keep things under control... sometimes.
+────────────────────────────────────────────────────────────────────────────────────────
+You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: I went ahead and added the task. I just have to remember it for you, right?
 [T][ ] buy groceries
 You have 1 task in the list, in case you were wondering.
@@ -18,35 +22,27 @@ Ray: I went ahead and added the task. I just have to remember it for you, right?
 You have 3 tasks in the list, in case you were wondering.
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
-Ray: W-Well, nice job, I guess! I marked this task as done for you—
-Not that I’m impressed or anything!
+Ray: I've marked this task for you. You're welcome I guess!
 [D][X] presentation slides (by: next friday)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
-Ray: W-Well, nice job, I guess! I marked this task as done for you—
-Not that I’m impressed or anything!
+Ray: I've marked this task for you. You're welcome I guess!
 [E][X] idol show (from: sat 3pm to: 5pm)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: H-Here! These are the tasks you told me to remember. It's not like I wanted to help
 you or anything. I just didn’t want you messing things up, okay?
-S-So don’t get the wrong idea!
-
 1. [T][ ] buy groceries
 2. [D][X] presentation slides (by: next friday)
 3. [E][X] idol show (from: sat 3pm to: 5pm)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
-Ray: I’ve marked this task as not done yet. It’s not like I care if you finish it or not—
-I just didn’t want to see it sitting there all messy!
-S-So hurry up and deal with it already, okay?
+Ray: I've unmarked this task for you. You're welcome I guess!
 [D][ ] presentation slides (by: next friday)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: H-Here! These are the tasks you told me to remember. It's not like I wanted to help
 you or anything. I just didn’t want you messing things up, okay?
-S-So don’t get the wrong idea!
-
 1. [T][ ] buy groceries
 2. [D][ ] presentation slides (by: next friday)
 3. [E][X] idol show (from: sat 3pm to: 5pm)
@@ -55,6 +51,26 @@ You: ─────────────────────────
 Ray: W-What?! I couldn’t understand what you said, okay?
 It’s not like it’s my fault or anything!
 Just… ugh, repeat it already, and don’t make me wait!
+────────────────────────────────────────────────────────────────────────────────────────
+You: ────────────────────────────────────────────────────────────────────────────────────────
+Ray: Ugh, seriously? Be more clear! I can’t read your mind, you know!
+Just… specify which task you want to mark as done in this format: mark <task-id>
+────────────────────────────────────────────────────────────────────────────────────────
+You: ────────────────────────────────────────────────────────────────────────────────────────
+Ray: Ugh, seriously?! Just pick a valid task ID already!
+It’s not like I enjoy pointing out your mistakes or anything…
+────────────────────────────────────────────────────────────────────────────────────────
+You: ────────────────────────────────────────────────────────────────────────────────────────
+Ray: H-Hey! If you’re going to add a todo task, at least do it properly!
+Give me its details in this format: todo <description>
+────────────────────────────────────────────────────────────────────────────────────────
+You: ────────────────────────────────────────────────────────────────────────────────────────
+Ray: H-Hey! If you’re going to add a deadline, at least do it properly!
+Give me its details in this format: deadline <description> /by <when>
+────────────────────────────────────────────────────────────────────────────────────────
+You: ────────────────────────────────────────────────────────────────────────────────────────
+Ray: H-Hey! If you’re going to add an event, at least do it properly!
+Give me its details in this format: event <description> /from <when> /to <when>
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: Sure, bye or whatever. I-I mean, it's not like I want to see you again or

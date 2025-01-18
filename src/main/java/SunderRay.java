@@ -17,8 +17,7 @@ public class SunderRay {
         System.out.printf("""
                 Ray: H-Hey! It's not like I want to introduce myself or anything, but... my name is
                 %s. (¬`‸´¬) W-What do you want me to do for you, huh? It's not like I care
-                or anything! (,,>.<,,) b-baka!
-                """, name);
+                or anything! (,,>.<,,) b-baka!%n""", name);
     }
 
     public static void addTask(Task[] tasks, Task task, int numTasks) {
@@ -26,7 +25,7 @@ public class SunderRay {
         System.out.println("I went ahead and added the task. I just have to remember it for you, right?");
         System.out.println(task);
         System.out.printf(
-                "You have %d %s in the list, in case you were wondering.\n",
+                "You have %d %s in the list, in case you were wondering.%n",
                 numTasks + 1,
                 numTasks > 0 ? "tasks" : "task");
     }
@@ -46,7 +45,8 @@ public class SunderRay {
 
             System.out.print("Ray: ");
 
-            String action = userInput.split(" ")[0];
+            String[] words = userInput.split(" ", 2);
+            String action = words[0];
             int taskId;
             Task task;
             Matcher matcher;
@@ -63,49 +63,44 @@ public class SunderRay {
                     } else {
                         System.out.println("""
                                 H-Here! These are the tasks you told me to remember. It's not like I wanted to help
-                                you or anything. I just didn’t want you messing things up, okay?
-                                S-So don’t get the wrong idea!
-                                """);
+                                you or anything. I just didn’t want you messing things up, okay?""");
 
                         for (int i = 0; i < numTasks; i++) {
-                            System.out.printf("%d. %s\n", i + 1, tasks[i]);
+                            System.out.printf("%d. %s%n", i + 1, tasks[i]);
                         }
                     }
                     break;
 
                 case "mark":
-                    try {
-                        taskId = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                        task = tasks[taskId];
-                        task.setIsDone(true);
-                        System.out.print("""
-                                W-Well, nice job, I guess! I marked this task as done for you—
-                                Not that I’m impressed or anything!
-                                """);
-                        System.out.println(task);
-                    } catch (NumberFormatException e) {
-                        System.out.println(UNRECOGNIZED_RESPONSE);
-                    }
-                    break;
-
+                    // Fallthrough
                 case "unmark":
                     try {
-                        taskId = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                        taskId = Integer.parseInt(words[1]) - 1;
                         task = tasks[taskId];
-                        task.setIsDone(false);
-                        System.out.print("""
-                                I’ve marked this task as not done yet. It’s not like I care if you finish it or not—
-                                I just didn’t want to see it sitting there all messy!
-                                S-So hurry up and deal with it already, okay?
-                                """);
+                        task.setIsDone(action.equals("mark"));
+                        System.out.printf("""
+                                I've %sed this task for you. You're welcome I guess!%n""", action);
                         System.out.println(task);
                     } catch (NumberFormatException e) {
-                        System.out.println(UNRECOGNIZED_RESPONSE);
+                        System.out.printf("""
+                                Ugh, seriously? Be more clear! I can’t read your mind, you know!
+                                Just… specify which task you want to %1$s as done in this format: %1$s <task-id>
+                                """, action);
+                    } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+                        System.out.println("""
+                                Ugh, seriously?! Just pick a valid task ID already!
+                                It’s not like I enjoy pointing out your mistakes or anything…""");
                     }
                     break;
 
                 case "todo":
-                    task = new ToDo(userInput.split(" ", 2)[1]);
+                    if (words.length < 2) {
+                        System.out.println("""
+                                H-Hey! If you’re going to add a todo task, at least do it properly!
+                                Give me its details in this format: todo <description>""");
+                        break;
+                    }
+                    task = new ToDo(words[1]);
                     addTask(tasks, task, numTasks);
                     numTasks++;
                     break;
@@ -117,7 +112,9 @@ public class SunderRay {
                         addTask(tasks, task, numTasks);
                         numTasks++;
                     } else {
-                        System.out.println(UNRECOGNIZED_RESPONSE);
+                        System.out.println("""
+                                H-Hey! If you’re going to add a deadline, at least do it properly!
+                                Give me its details in this format: deadline <description> /by <when>""");
                     }
                     break;
 
@@ -128,7 +125,9 @@ public class SunderRay {
                         addTask(tasks, task, numTasks);
                         numTasks++;
                     } else {
-                        System.out.println(UNRECOGNIZED_RESPONSE);
+                        System.out.println("""
+                                H-Hey! If you’re going to add an event, at least do it properly!
+                                Give me its details in this format: event <description> /from <when> /to <when>""");
                     }
                     break;
 

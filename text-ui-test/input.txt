@@ -1,3 +1,4 @@
+list
 todo buy groceries
 deadline presentation slides /by next friday
 event idol show /from sat 3pm /to 5pm
@@ -7,4 +8,9 @@ list
 unmark 2
 list
 blah
+mark blah
+unmark 4
+todo
+deadline blah
+event blah
 bye
