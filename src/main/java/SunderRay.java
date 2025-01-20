@@ -41,91 +41,91 @@ public class SunderRay {
             Matcher matcher;
 
             switch (command) {
-                case BYE:
-                    break loop;
+            case BYE:
+                break loop;
 
-                case LIST:
-                    if (tasks.isEmpty()) {
-                        System.out.println(InfoMsg.NO_TASKS);
-                    } else {
-                        System.out.println(InfoMsg.LIST_TASKS);
+            case LIST:
+                if (tasks.isEmpty()) {
+                    System.out.println(InfoMsg.NO_TASKS);
+                } else {
+                    System.out.println(InfoMsg.LIST_TASKS);
 
-                        for (int i = 0; i < tasks.size(); i++) {
-                            System.out.printf("%d.  %s%n", i + 1, tasks.get(i));
-                        }
+                    for (int i = 0; i < tasks.size(); i++) {
+                        System.out.printf("%d.  %s%n", i + 1, tasks.get(i));
                     }
-                    break;
+                }
+                break;
 
-                case MARK:
-                    // Fallthrough
+            case MARK:
+                // Fallthrough
 
-                case UNMARK:
-                    try {
-                        taskId = Integer.parseInt(words[1]) - 1;
-                        task = tasks.get(taskId);
-                        task.setIsDone(command.equals(Command.MARK));
-                        System.out.printf(InfoMsg.MARK_TASK.toString(), command.name().toLowerCase());
-                        System.out.printf("\t%s%n", task);
-                    } catch (NumberFormatException e) {
-                        System.out.printf(
-                                ErrorMsg.WRONG_FORMAT.toString(),
-                                String.format("%s <task-id>", command.name().toLowerCase()));
-                    } catch (IndexOutOfBoundsException | NullPointerException e) {
-                        System.out.println(ErrorMsg.INVALID_ID);
-                    }
-                    break;
+            case UNMARK:
+                try {
+                    taskId = Integer.parseInt(words[1]) - 1;
+                    task = tasks.get(taskId);
+                    task.setIsDone(command.equals(Command.MARK));
+                    System.out.printf(InfoMsg.MARK_TASK.toString(), command.name().toLowerCase());
+                    System.out.printf("\t%s%n", task);
+                } catch (NumberFormatException e) {
+                    System.out.printf(
+                            ErrorMsg.WRONG_FORMAT.toString(),
+                            String.format("%s <task-id>", command.name().toLowerCase()));
+                } catch (IndexOutOfBoundsException | NullPointerException e) {
+                    System.out.println(ErrorMsg.INVALID_ID);
+                }
+                break;
 
-                case DELETE:
-                    try {
-                        taskId = Integer.parseInt(words[1]) - 1;
-                        task = tasks.get(taskId);
-                        tasks.remove(taskId);
-                        System.out.println(InfoMsg.DELETE_TASK);
-                        System.out.printf("\t%s%n", task);
-                        System.out.printf(
-                                InfoMsg.NUM_TASKS.toString(),
-                                tasks.size(),
-                                tasks.size() == 1 ? "task" : "tasks");
-                    } catch (NumberFormatException e) {
-                        System.out.printf(ErrorMsg.WRONG_FORMAT.toString(), "delete <task-id>");
-                    } catch (IndexOutOfBoundsException | NullPointerException e) {
-                        System.out.println(ErrorMsg.INVALID_ID);
-                    }
-                    break;
+            case DELETE:
+                try {
+                    taskId = Integer.parseInt(words[1]) - 1;
+                    task = tasks.get(taskId);
+                    tasks.remove(taskId);
+                    System.out.println(InfoMsg.DELETE_TASK);
+                    System.out.printf("\t%s%n", task);
+                    System.out.printf(
+                            InfoMsg.NUM_TASKS.toString(),
+                            tasks.size(),
+                            tasks.size() == 1 ? "task" : "tasks");
+                } catch (NumberFormatException e) {
+                    System.out.printf(ErrorMsg.WRONG_FORMAT.toString(), "delete <task-id>");
+                } catch (IndexOutOfBoundsException | NullPointerException e) {
+                    System.out.println(ErrorMsg.INVALID_ID);
+                }
+                break;
 
-                case TODO:
-                    if (words.length > 1) {
-                        task = new ToDo(words[1]);
-                        addTask(tasks, task);
-                    } else {
-                        System.out.printf(ErrorMsg.WRONG_FORMAT.toString(), "todo <description>");
-                    }
-                    break;
+            case TODO:
+                if (words.length > 1) {
+                    task = new ToDo(words[1]);
+                    addTask(tasks, task);
+                } else {
+                    System.out.printf(ErrorMsg.WRONG_FORMAT.toString(), "todo <description>");
+                }
+                break;
 
-                case DEADLINE:
-                    matcher = deadlinePattern.matcher(userInput);
-                    if (matcher.find()) {
-                        task = new Deadline(matcher.group(1), matcher.group(2));
-                        addTask(tasks, task);
-                    } else {
-                        System.out.printf(ErrorMsg.WRONG_FORMAT.toString(), "deadline <description> /by <when>");
-                    }
-                    break;
+            case DEADLINE:
+                matcher = deadlinePattern.matcher(userInput);
+                if (matcher.find()) {
+                    task = new Deadline(matcher.group(1), matcher.group(2));
+                    addTask(tasks, task);
+                } else {
+                    System.out.printf(ErrorMsg.WRONG_FORMAT.toString(), "deadline <description> /by <when>");
+                }
+                break;
 
-                case EVENT:
-                    matcher = eventpattern.matcher(userInput);
-                    if (matcher.find()) {
-                        task = new Event(matcher.group(1), matcher.group(2), matcher.group(3));
-                        addTask(tasks, task);
-                    } else {
-                        System.out.printf(
-                                ErrorMsg.WRONG_FORMAT.toString(),
-                                "event <description> /from <when> /to <when>");
-                    }
-                    break;
+            case EVENT:
+                matcher = eventpattern.matcher(userInput);
+                if (matcher.find()) {
+                    task = new Event(matcher.group(1), matcher.group(2), matcher.group(3));
+                    addTask(tasks, task);
+                } else {
+                    System.out.printf(
+                            ErrorMsg.WRONG_FORMAT.toString(),
+                            "event <description> /from <when> /to <when>");
+                }
+                break;
 
-                default:
-                    System.out.println(ErrorMsg.UNKNOWN_COMMAND);
+            default:
+                System.out.println(ErrorMsg.UNKNOWN_COMMAND);
             }
         }
     }
