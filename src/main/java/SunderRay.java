@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -124,12 +127,21 @@ public class SunderRay {
                 break;
 
             case DEADLINE:
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DateFormat.PARSABLE.toString());
                 matcher = deadlinePattern.matcher(userInput);
                 if (matcher.find()) {
-                    task = new Deadline(matcher.group(1), matcher.group(2));
-                    addTask(tasks, task);
+                    try {
+                        task = new Deadline(matcher.group(1), LocalDate.parse(matcher.group(2), dtf));
+                        addTask(tasks, task);
+                    } catch (DateTimeParseException e) {
+                        System.out.printf(
+                                ErrorMsg.WRONG_FORMAT.toString(),
+                                String.format("deadline <description> /by <%s>", DateFormat.PARSABLE));
+                    }
                 } else {
-                    System.out.printf(ErrorMsg.WRONG_FORMAT, "deadline <description> /by <when>");
+                    System.out.printf(
+                            ErrorMsg.WRONG_FORMAT,
+                            String.format("deadline <description> /by <%s>", DateFormat.PARSABLE));
                 }
                 break;
 

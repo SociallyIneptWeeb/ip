@@ -1,7 +1,10 @@
-public class Deadline extends ToDo {
-    private final String by;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-    Deadline(String description, String by) {
+public class Deadline extends ToDo {
+    private final LocalDate by;
+
+    Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
     }
@@ -13,11 +16,17 @@ public class Deadline extends ToDo {
 
     @Override
     public String toParsableString() {
-        return String.format("%s | %s", super.toParsableString(), this.by);
+        return String.format(
+                "%s | %s",
+                super.toParsableString(),
+                this.by.format(DateTimeFormatter.ofPattern(DateFormat.PARSABLE.toString())));
     }
 
     @Override
     public String toString() {
-        return String.format("%s (by: %s)", super.toString(), this.by);
+        return String.format(
+                "%s (by: %s)",
+                super.toString(),
+                this.by.format(DateTimeFormatter.ofPattern(DateFormat.READABLE.toString())));
     }
 }
