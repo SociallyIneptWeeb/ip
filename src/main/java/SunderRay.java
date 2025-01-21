@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -15,8 +17,27 @@ public class SunderRay {
     }
 
     public static void converse() {
+        Storage storage;
+        ArrayList<Task> tasks;
+        try {
+            storage = new Storage();
+        } catch (IOException e) {
+            System.out.println(ErrorMsg.CREATE_FILE_ERROR);
+            return;
+        }
+
+        try {
+            tasks = storage.load();
+            System.out.printf(
+                    InfoMsg.LOAD_DATA_FILE.toString(),
+                    tasks.size(),
+                    tasks.size() == 1 ? "task" : "tasks");
+        } catch (IOException e) {
+            System.out.println(ErrorMsg.CORRUPTED_DATA);
+            return;
+        }
+
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
         Pattern eventpattern = Pattern.compile("event (.+?) /from (.+?) /to (.+)");
         Pattern deadlinePattern = Pattern.compile("deadline (.+?) /by (.+)");
 
@@ -42,6 +63,7 @@ public class SunderRay {
 
             switch (command) {
             case BYE:
+                System.out.println(InfoMsg.END);
                 break loop;
 
             case LIST:
@@ -127,12 +149,17 @@ public class SunderRay {
             default:
                 System.out.println(ErrorMsg.UNKNOWN_COMMAND);
             }
+
+            try {
+                storage.store(tasks);
+            } catch (IOException e) {
+                System.out.println(ErrorMsg.SAVE_TASKS_ERROR);
+            }
         }
     }
 
     public static void main(String[] args) {
         System.out.println(InfoMsg.INTRO);
         converse();
-        System.out.println(InfoMsg.END);
     }
 }

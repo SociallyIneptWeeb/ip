@@ -14,7 +14,12 @@ public class Event extends ToDo {
     }
 
     @Override
+    public String toParsableString() {
+        return String.format("%s | %s | %s", super.toParsableString(), this.from, this.to);
+    }
+
+    @Override
     public String toString() {
-        return String.format("%s (from: %s to: %s)", super.toString(), from, to);
+        return String.format("%s (from: %s to: %s)", super.toString(), this.from, this.to);
     }
 }

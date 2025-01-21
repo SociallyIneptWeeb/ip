@@ -1,11 +1,17 @@
 public enum StatusIcon {
-    DONE("X"),
-    NOT_DONE(" ");
+    DONE("X", "1"),
+    NOT_DONE(" ", "0");
 
     private final String icon;
+    private final String parsableIcon;
 
-    StatusIcon(String icon) {
+    StatusIcon(String icon, String parsableIcon) {
         this.icon = icon;
+        this.parsableIcon = parsableIcon;
+    }
+
+    public String toParsableString() {
+        return this.parsableIcon;
     }
 
     @Override

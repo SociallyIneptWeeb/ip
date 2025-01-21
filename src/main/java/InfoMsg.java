@@ -19,7 +19,10 @@ public enum InfoMsg {
     MARK_TASK("I've %sed this task for you. You're welcome I guess!%n"),
     DELETE_TASK("""
             F-Fine, I’ve deleted the task for you!
-            I just didn’t want to see it cluttering things up, okay?!""");
+            I just didn’t want to see it cluttering things up, okay?!"""),
+    LOAD_DATA_FILE("""
+             I’ve loaded your saved tasks and it looks like you’ve got %d %s, okay?
+             Just don’t mess it up from here!%n""");
 
     private final String message;
 

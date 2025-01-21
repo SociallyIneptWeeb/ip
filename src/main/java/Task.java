@@ -14,8 +14,15 @@ public abstract class Task {
         return (isDone ? StatusIcon.DONE.toString() : StatusIcon.NOT_DONE.toString());
     }
 
+    private String getParsableStatusIcon() {
+        return (isDone ? StatusIcon.DONE.toParsableString() : StatusIcon.NOT_DONE.toParsableString());
+    }
+
     protected abstract String getTaskIcon();
 
+    public String toParsableString() {
+        return String.format("%s | %s | %s", this.getTaskIcon(), this.getParsableStatusIcon(), this.description);
+    }
     @Override
     public String toString() {
         return String.format("[%s][%s] %s", this.getTaskIcon(), this.getStatusIcon(), this.description);
