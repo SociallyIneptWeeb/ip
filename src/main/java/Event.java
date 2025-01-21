@@ -10,7 +10,7 @@ public class Event extends ToDo {
 
     @Override
     protected String getTaskIcon() {
-        return "E";
+        return TaskIcon.EVENT.toString();
     }
 
     @Override
