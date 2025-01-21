@@ -5,6 +5,6 @@ public class ToDo extends Task {
 
     @Override
     protected String getTaskIcon() {
-        return "T";
+        return TaskIcon.TODO.toString();
     }
 }

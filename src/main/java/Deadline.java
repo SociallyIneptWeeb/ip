@@ -8,11 +8,16 @@ public class Deadline extends ToDo {
 
     @Override
     protected String getTaskIcon() {
-        return "D";
+        return TaskIcon.DEADLINE.toString();
+    }
+
+    @Override
+    public String toParsableString() {
+        return String.format("%s | %s", super.toParsableString(), this.by);
     }
 
     @Override
     public String toString() {
-        return String.format("%s (by: %s)", super.toString(), by);
+        return String.format("%s (by: %s)", super.toString(), this.by);
     }
 }

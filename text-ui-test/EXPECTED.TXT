@@ -1,6 +1,8 @@
 Ray: H-Hey! It's not like I want to introduce myself or anything, but... my name is
 Sunder Ray. (¬`‸´¬) W-What do you want me to do for you, huh? It's not like I care
 or anything! (,,>.<,,) b-baka!
+I’ve loaded your saved tasks and it looks like you’ve got 0 tasks, okay?
+Just don’t mess it up from here!
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: Hmph, you don’t have any tasks right now. Not that I’m impressed or anything!
