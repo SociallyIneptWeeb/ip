@@ -11,7 +11,7 @@ public abstract class Task {
     }
 
     private String getStatusIcon() {
-        return (isDone ? "X" : " ");
+        return (isDone ? StatusIcon.DONE.toString() : StatusIcon.NOT_DONE.toString());
     }
 
     protected abstract String getTaskIcon();
