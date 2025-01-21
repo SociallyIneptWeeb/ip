@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,7 +10,7 @@ public class SunderRay {
         System.out.println(InfoMsg.ADDED_TASK);
         System.out.printf("\t%s%n", task);
         System.out.printf(
-                InfoMsg.NUM_TASKS.toString(),
+                InfoMsg.NUM_TASKS,
                 tasks.size(),
                 tasks.size() == 1 ? "task" : "tasks");
     }
@@ -29,7 +28,7 @@ public class SunderRay {
         try {
             tasks = storage.load();
             System.out.printf(
-                    InfoMsg.LOAD_DATA_FILE.toString(),
+                    InfoMsg.LOAD_DATA_FILE,
                     tasks.size(),
                     tasks.size() == 1 ? "task" : "tasks");
         } catch (IOException e) {
@@ -86,11 +85,11 @@ public class SunderRay {
                     taskId = Integer.parseInt(words[1]) - 1;
                     task = tasks.get(taskId);
                     task.setIsDone(command.equals(Command.MARK));
-                    System.out.printf(InfoMsg.MARK_TASK.toString(), command.name().toLowerCase());
+                    System.out.printf(InfoMsg.MARK_TASK, command.name().toLowerCase());
                     System.out.printf("\t%s%n", task);
                 } catch (NumberFormatException e) {
                     System.out.printf(
-                            ErrorMsg.WRONG_FORMAT.toString(),
+                            ErrorMsg.WRONG_FORMAT,
                             String.format("%s <task-id>", command.name().toLowerCase()));
                 } catch (IndexOutOfBoundsException | NullPointerException e) {
                     System.out.println(ErrorMsg.INVALID_ID);
@@ -105,11 +104,11 @@ public class SunderRay {
                     System.out.println(InfoMsg.DELETE_TASK);
                     System.out.printf("\t%s%n", task);
                     System.out.printf(
-                            InfoMsg.NUM_TASKS.toString(),
+                            InfoMsg.NUM_TASKS,
                             tasks.size(),
                             tasks.size() == 1 ? "task" : "tasks");
                 } catch (NumberFormatException e) {
-                    System.out.printf(ErrorMsg.WRONG_FORMAT.toString(), "delete <task-id>");
+                    System.out.printf(ErrorMsg.WRONG_FORMAT, "delete <task-id>");
                 } catch (IndexOutOfBoundsException | NullPointerException e) {
                     System.out.println(ErrorMsg.INVALID_ID);
                 }
@@ -120,7 +119,7 @@ public class SunderRay {
                     task = new ToDo(words[1]);
                     addTask(tasks, task);
                 } else {
-                    System.out.printf(ErrorMsg.WRONG_FORMAT.toString(), "todo <description>");
+                    System.out.printf(ErrorMsg.WRONG_FORMAT, "todo <description>");
                 }
                 break;
 
@@ -130,7 +129,7 @@ public class SunderRay {
                     task = new Deadline(matcher.group(1), matcher.group(2));
                     addTask(tasks, task);
                 } else {
-                    System.out.printf(ErrorMsg.WRONG_FORMAT.toString(), "deadline <description> /by <when>");
+                    System.out.printf(ErrorMsg.WRONG_FORMAT, "deadline <description> /by <when>");
                 }
                 break;
 
@@ -141,7 +140,7 @@ public class SunderRay {
                     addTask(tasks, task);
                 } else {
                     System.out.printf(
-                            ErrorMsg.WRONG_FORMAT.toString(),
+                            ErrorMsg.WRONG_FORMAT,
                             "event <description> /from <when> /to <when>");
                 }
                 break;
