@@ -15,7 +15,7 @@ Now you have 1 task in the list, in case you were wondering.
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: I went ahead and added the task. I just have to remember it for you, right?
-	[D][ ] presentation slides (by: next friday)
+	[D][ ] presentation slides (by: Feb 21 2025)
 Now you have 2 tasks in the list, in case you were wondering.
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
@@ -25,7 +25,7 @@ Now you have 3 tasks in the list, in case you were wondering.
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: I've marked this task for you. You're welcome I guess!
-	[D][X] presentation slides (by: next friday)
+	[D][X] presentation slides (by: Feb 21 2025)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: I've marked this task for you. You're welcome I guess!
@@ -35,12 +35,12 @@ You: ─────────────────────────
 Ray: H-Here! These are the tasks you told me to remember. It's not like I wanted to help
 you or anything. I just didn’t want you messing things up, okay?
 1.  [T][ ] buy groceries
-2.  [D][X] presentation slides (by: next friday)
+2.  [D][X] presentation slides (by: Feb 21 2025)
 3.  [E][X] idol show (from: sat 3pm to: 5pm)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: I've unmarked this task for you. You're welcome I guess!
-	[D][ ] presentation slides (by: next friday)
+	[D][ ] presentation slides (by: Feb 21 2025)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: F-Fine, I’ve deleted the task for you!
@@ -51,7 +51,7 @@ Now you have 2 tasks in the list, in case you were wondering.
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: H-Here! These are the tasks you told me to remember. It's not like I wanted to help
 you or anything. I just didn’t want you messing things up, okay?
-1.  [D][ ] presentation slides (by: next friday)
+1.  [D][ ] presentation slides (by: Feb 21 2025)
 2.  [E][X] idol show (from: sat 3pm to: 5pm)
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
@@ -77,7 +77,7 @@ Just give it to me straight in this format: todo <description>
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: Ugh, seriously? Be more clear! I can’t read your mind, you know!
-Just give it to me straight in this format: deadline <description> /by <when>
+Just give it to me straight in this format: deadline <description> /by <yyyy-MM-dd>
 ────────────────────────────────────────────────────────────────────────────────────────
 You: ────────────────────────────────────────────────────────────────────────────────────────
 Ray: Ugh, seriously? Be more clear! I can’t read your mind, you know!

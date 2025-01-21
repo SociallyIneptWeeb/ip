@@ -1,6 +1,6 @@
 list
 todo buy groceries
-deadline presentation slides /by next friday
+deadline presentation slides /by 2025-02-21
 event idol show /from sat 3pm /to 5pm
 mark 2
 mark 3

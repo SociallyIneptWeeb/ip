@@ -1,4 +1,7 @@
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -33,6 +36,7 @@ public class Storage {
         return Arrays.stream(StatusIcon.values()).anyMatch(icon -> icon.toParsableString().equals(statusIcon));
     }
 
+    // TODO: Throw a more meaningful exception
     private Task parseTask(String line) throws IOException {
         String[] details = line.split("\\|");
         for (int i = 0; i < details.length; i++) {
@@ -46,14 +50,19 @@ public class Storage {
         String taskType = details[0];
         boolean isDone = details[1].equals(StatusIcon.DONE.toParsableString());
         String description = details[2];
-
-        Task task = switch (taskType) {
-            case "T" -> new ToDo(description);
-            case "D" -> new Deadline(description, details[3]);
-            case "E" -> new Event(description, details[3], details[4]);
-            // TODO: Throw a more meaningful exception
-            default -> throw new IOException();
-        };
+        Task task;
+        try {
+            task = switch (taskType) {
+                case "T" -> new ToDo(description);
+                case "D" -> new Deadline(
+                        description,
+                        LocalDate.parse(details[3], DateTimeFormatter.ofPattern(DateFormat.PARSABLE.toString())));
+                case "E" -> new Event(description, details[3], details[4]);
+                default -> throw new IOException();
+            };
+        } catch (DateTimeParseException e) {
+            throw new IOException();
+        }
 
         task.setIsDone(isDone);
         return task;
