@@ -1,9 +1,15 @@
+package SunderRay.commands;
+
+import SunderRay.data.messages.InfoMsg;
+import SunderRay.tasklist.TaskList;
+import SunderRay.tasks.Task;
+
 public class MarkCommand extends Command {
     private final TaskList taskList;
     private final int taskId;
     private final boolean isDone;
 
-    MarkCommand(TaskList taskList, int taskId, boolean isDone) {
+    public MarkCommand(TaskList taskList, int taskId, boolean isDone) {
         this.taskList = taskList;
         this.taskId = taskId;
         this.isDone = isDone;

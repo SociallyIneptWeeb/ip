@@ -1,8 +1,14 @@
+package SunderRay.commands;
+
+import SunderRay.data.messages.InfoMsg;
+import SunderRay.tasklist.TaskList;
+import SunderRay.tasks.Task;
+
 public class DeleteCommand extends Command {
     private final TaskList taskList;
     private final int taskId;
 
-    DeleteCommand(TaskList taskList, int taskId) {
+    public DeleteCommand(TaskList taskList, int taskId) {
         this.taskList = taskList;
         this.taskId = taskId;
     }

@@ -1,10 +1,15 @@
+package SunderRay.tasks;
+
+import SunderRay.data.formats.DateFormat;
+import SunderRay.data.icons.TaskIcon;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends ToDo {
     private final LocalDate by;
 
-    Deadline(String description, LocalDate by) {
+    public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
     }

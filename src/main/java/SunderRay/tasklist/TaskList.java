@@ -1,13 +1,18 @@
+package SunderRay.tasklist;
+
+import SunderRay.data.messages.InfoMsg;
+import SunderRay.tasks.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
 
-    TaskList() {
+    public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
-    TaskList(ArrayList<Task> tasks) {
+    public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 

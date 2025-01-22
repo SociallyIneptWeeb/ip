@@ -1,5 +1,9 @@
+package SunderRay.tasks;
+
+import SunderRay.data.icons.TaskIcon;
+
 public class ToDo extends Task {
-    ToDo(String description) {
+    public ToDo(String description) {
         super(description);
     }
 

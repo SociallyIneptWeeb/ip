@@ -1,8 +1,12 @@
+package SunderRay.tasks;
+
+import SunderRay.data.icons.TaskIcon;
+
 public class Event extends ToDo {
     private final String from;
     private final String to;
 
-    Event(String description, String from, String to) {
+    public Event(String description, String from, String to) {
         super(description);
         this.from = from;
         this.to = to;

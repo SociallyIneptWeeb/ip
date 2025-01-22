@@ -1,3 +1,5 @@
+package SunderRay.data.icons;
+
 public enum StatusIcon {
     DONE("X", "1"),
     NOT_DONE(" ", "0");

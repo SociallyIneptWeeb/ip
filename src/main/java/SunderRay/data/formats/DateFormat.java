@@ -1,3 +1,5 @@
+package SunderRay.data.formats;
+
 public enum DateFormat {
     READABLE("MMM dd yyyy"),
     PARSABLE("yyyy-MM-dd");

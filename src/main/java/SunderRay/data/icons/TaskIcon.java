@@ -1,3 +1,5 @@
+package SunderRay.data.icons;
+
 public enum TaskIcon {
     TODO("T"),
     DEADLINE("D"),

@@ -1,8 +1,12 @@
+package SunderRay.tasks;
+
+import SunderRay.data.icons.StatusIcon;
+
 public abstract class Task {
     private final String description;
     private Boolean isDone = false;
 
-    Task(String description) {
+    public Task(String description) {
         this.description = description;
     }
 

@@ -1,3 +1,15 @@
+package SunderRay.storage;
+
+import SunderRay.data.formats.DateFormat;
+import SunderRay.data.icons.StatusIcon;
+import SunderRay.data.icons.TaskIcon;
+import SunderRay.data.messages.ErrorMsg;
+import SunderRay.tasklist.TaskList;
+import SunderRay.tasks.Deadline;
+import SunderRay.tasks.Event;
+import SunderRay.tasks.Task;
+import SunderRay.tasks.ToDo;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,7 +20,7 @@ public class Storage {
     private final String filepath = "data/tasks.txt";
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    Storage() throws CreateStorageFileException {
+    public Storage() throws CreateStorageFileException {
         try {
             File f = new File(this.filepath);
             if (!f.isFile()) {

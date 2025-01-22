@@ -1,7 +1,12 @@
+package SunderRay.commands;
+
+import SunderRay.data.messages.InfoMsg;
+import SunderRay.tasklist.TaskList;
+
 public class ListCommand extends Command {
     private final TaskList taskList;
 
-    ListCommand(TaskList taskList) {
+    public ListCommand(TaskList taskList) {
         this.taskList = taskList;
     }
 

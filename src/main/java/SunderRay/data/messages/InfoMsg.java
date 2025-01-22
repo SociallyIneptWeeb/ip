@@ -1,3 +1,5 @@
+package SunderRay.data.messages;
+
 public class InfoMsg {
     public static final String DIVIDER =
             "────────────────────────────────────────────────────────────────────────────────────────";

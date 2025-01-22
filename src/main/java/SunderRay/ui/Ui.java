@@ -1,3 +1,8 @@
+package SunderRay.ui;
+
+import SunderRay.data.messages.InfoMsg;
+import SunderRay.tasklist.TaskList;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -5,7 +10,7 @@ public class Ui {
     private final Scanner in;
     private final PrintStream out;
 
-    Ui() {
+    public Ui() {
         this.in = new Scanner(System.in);
         this.out = System.out;
     }

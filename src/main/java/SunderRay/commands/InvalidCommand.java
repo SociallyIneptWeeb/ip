@@ -1,7 +1,9 @@
+package SunderRay.commands;
+
 public class InvalidCommand extends Command {
     private final String message;
 
-    InvalidCommand(String message) {
+    public InvalidCommand(String message) {
         this.message = message;
     }
 
