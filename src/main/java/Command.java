@@ -1,3 +1,3 @@
-public enum Command {
-    LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, BYE;
+public abstract class Command {
+    public abstract String execute();
 }

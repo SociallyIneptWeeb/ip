@@ -1,4 +1,5 @@
-Ray: H-Hey! It's not like I want to introduce myself or anything, but... my name is
+────────────────────────────────────────────────────────────────────────────────────────
+Ray: Ray: H-Hey! It's not like I want to introduce myself or anything, but... my name is
 Sunder Ray. (¬`‸´¬) W-What do you want me to do for you, huh? It's not like I care
 or anything! (,,>.<,,) b-baka!
 I’ve loaded your saved tasks and it looks like you’ve got 0 tasks, okay?
@@ -87,3 +88,4 @@ You: ─────────────────────────
 Ray: Sure, bye or whatever. I-I mean, it's not like I want to see you again or
 anything... But, well, if you show up, I guess it wouldn’t be that bad.
 S-See you soon, maybe! (｡>\\<)
+────────────────────────────────────────────────────────────────────────────────────────

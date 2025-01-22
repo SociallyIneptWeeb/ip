@@ -14,15 +14,15 @@ public class InfoMsg {
             I guess even you can keep things under control... sometimes.""";
     public static final String ADDED_TASK =
             "I went ahead and added the task. I just have to remember it for you, right?";
-    public static final String NUM_TASKS = "Now you have %d %s in the list, in case you were wondering.%n";
+    public static final String NUM_TASKS = "Now you have %d %s in the list, in case you were wondering.";
     public static final String LIST_TASKS = """
             H-Here! These are the tasks you told me to remember. It's not like I wanted to help
             you or anything. I just didn’t want you messing things up, okay?""";
-    public static final String MARK_TASK = "I've %sed this task for you. You're welcome I guess!%n";
+    public static final String MARK_TASK = "I've %sed this task for you. You're welcome I guess!";
     public static final String DELETE_TASK = """
             F-Fine, I’ve deleted the task for you!
             I just didn’t want to see it cluttering things up, okay?!""";
     public static final String LOAD_DATA_FILE = """
              I’ve loaded your saved tasks and it looks like you’ve got %d %s, okay?
-             Just don’t mess it up from here!%n""";
+             Just don’t mess it up from here!""";
 }

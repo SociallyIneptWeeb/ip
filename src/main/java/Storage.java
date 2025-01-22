@@ -2,19 +2,23 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Storage {
     private final String filepath = "data/tasks.txt";
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    Storage() throws IOException {
-        File f = new File(this.filepath);
-        if (!f.isFile()) {
-            f.getParentFile().mkdirs();
-            f.createNewFile();
+    Storage() throws CreateStorageFileException {
+        try {
+            File f = new File(this.filepath);
+            if (!f.isFile()) {
+                f.getParentFile().mkdirs();
+                f.createNewFile();
+            }
+        } catch (IOException e) {
+            throw new CreateStorageFileException(ErrorMsg.CREATE_FILE_ERROR);
         }
+
     }
 
     private boolean isValidTask(String[] details) {
@@ -36,15 +40,14 @@ public class Storage {
         return Arrays.stream(StatusIcon.values()).anyMatch(icon -> icon.toParsableString().equals(statusIcon));
     }
 
-    // TODO: Throw a more meaningful exception
-    private Task parseTask(String line) throws IOException {
+    private Task parseTask(String line) throws ParseTaskException {
         String[] details = line.split("\\|");
         for (int i = 0; i < details.length; i++) {
             details[i] = details[i].trim();
         }
 
         if (!isValidTask(details)) {
-            throw new IOException();
+            throw new ParseTaskException(ErrorMsg.PARSE_TASK_ERROR);
         }
 
         String taskType = details[0];
@@ -58,41 +61,59 @@ public class Storage {
                         description,
                         LocalDate.parse(details[3], DateTimeFormatter.ofPattern(DateFormat.PARSABLE.toString())));
                 case "E" -> new Event(description, details[3], details[4]);
-                default -> throw new IOException();
+                default -> throw new ParseTaskException(ErrorMsg.PARSE_TASK_ERROR);
             };
         } catch (DateTimeParseException e) {
-            throw new IOException();
+            throw new ParseTaskException(ErrorMsg.PARSE_TASK_ERROR);
         }
 
         task.setIsDone(isDone);
         return task;
     }
 
-    public ArrayList<Task> load() throws IOException {
-        ArrayList<Task> tasks = new ArrayList<>();
+    public TaskList load() throws IOException, ParseTaskException {
+        TaskList taskList = new TaskList();
         try (BufferedReader br = new BufferedReader(new FileReader(this.filepath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 Task task = parseTask(line);
-                tasks.add(task);
+                taskList.addTask(task);
             }
         } catch (IOException e) {
-            // TODO: Throw a more meaningful exception
-            throw new IOException();
+            throw new IOException(ErrorMsg.CORRUPTED_DATA);
         }
 
-        return tasks;
+        return taskList;
     }
 
-    public void store(ArrayList<Task> tasks) throws IOException {
+    public void store(String[] taskLines) throws WriteStorageFileException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.filepath, false))) {
-            for (Task task : tasks) {
-                writer.write(task.toParsableString());
+            for (String taskLine : taskLines) {
+                writer.write(taskLine);
                 writer.newLine();
             }
         } catch (IOException e) {
-            // TODO: Throw a more meaningful exception
-            throw new IOException();
+            throw new WriteStorageFileException(ErrorMsg.SAVE_TASKS_ERROR);
         }
     }
+
+    public static class CreateStorageFileException extends Exception {
+        CreateStorageFileException(String message) {
+            super(message);
+        }
+    }
+
+    public static class WriteStorageFileException extends Exception {
+        WriteStorageFileException(String message) {
+            super(message);
+        }
+    }
+
+    public static class ParseTaskException extends Exception {
+        ParseTaskException(String message) {
+            super(message);
+        }
+    }
+
+
 }
