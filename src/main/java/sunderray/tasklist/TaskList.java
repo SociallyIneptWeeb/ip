@@ -39,7 +39,7 @@ public class TaskList {
     public String toListDisplay() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < getNumTasks(); i++) {
-            sb.append(String.format("%d.  %s%n", i + 1, tasks.get(i)));
+            sb.append(String.format("%d.\t%s%n", i + 1, tasks.get(i)));
         }
 
         return sb.toString().trim();
