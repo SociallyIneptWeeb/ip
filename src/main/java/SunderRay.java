@@ -1,9 +1,9 @@
-import SunderRay.commands.Command;
-import SunderRay.commands.ExitCommand;
-import SunderRay.parser.Parser;
-import SunderRay.storage.Storage;
-import SunderRay.tasklist.TaskList;
-import SunderRay.ui.Ui;
+import sunderray.commands.Command;
+import sunderray.commands.ExitCommand;
+import sunderray.parser.Parser;
+import sunderray.storage.Storage;
+import sunderray.tasklist.TaskList;
+import sunderray.ui.Ui;
 
 import java.io.IOException;
 
