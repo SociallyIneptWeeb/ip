@@ -20,28 +20,32 @@ public class TaskListTest {
     }
 
     @Test
-    public void getNumTasksTest() {
+    public void getNumTasks_noTasks_zeroReturned() {
         assertEquals(taskList.getNumTasks(), 0);
+    }
+
+    @Test
+    public void getNumTasks_threeTasks_threeReturned() {
         initTasks();
         assertEquals(taskList.getNumTasks(), 3);
     }
 
     @Test
-    public void addTaskTest() {
+    public void addTask_emptyList_oneTaskAdded() {
         Task task = new ToDo("Buy books");
         taskList.addTask(task);
         assertEquals(taskList.getNumTasks(), 1);
     }
 
     @Test
-    public void deleteTaskTest() {
+    public void deleteTask_someTasks_oneTaskDeleted() {
         initTasks();
         taskList.deleteTask(0);
         assertEquals(taskList.getNumTasks(), 2);
     }
 
     @Test
-    public void toParsableLinesTest() {
+    public void toParsableLines_someTasks_formattedTasksReturned() {
         assertEquals(taskList.toParsableLines().length, 0);
         initTasks();
         String[] actualOutput = taskList.toParsableLines();
