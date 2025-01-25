@@ -45,6 +45,22 @@ public class TaskList {
         return sb.toString().trim();
     }
 
+    /**
+     * Returns a list of formatted tasks whose description contains the keyword.
+     */
+    public String toMatchedTasksDisplay(String keyword) {
+        StringBuilder sb = new StringBuilder();
+        int numMatched = 0;
+        for (int i = 0; i < getNumTasks(); i++) {
+            Task task = tasks.get(i);
+            if (task.hasKeyword(keyword)) {
+                sb.append(String.format("%d.\t%s%n", numMatched++ + 1, tasks.get(i)));
+            }
+        }
+
+        return sb.toString().trim();
+    }
+
     public String toLoadedTasksDisplay() {
         return String.format(InfoMsg.LOAD_DATA_FILE, getNumTasks(), getNumTasks() == 1 ? "task" : "tasks");
     }

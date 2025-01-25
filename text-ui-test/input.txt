@@ -8,11 +8,14 @@ list
 unmark 2
 delete 1
 list
+find idol
+find blah
 blah
 mark blah
 unmark 4
 delete -1
 todo
+find
 deadline blah
 event blah
 bye

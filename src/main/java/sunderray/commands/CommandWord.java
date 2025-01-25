@@ -1,5 +1,5 @@
 package sunderray.commands;
 
 public enum CommandWord {
-    LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, BYE;
+    LIST, MARK, UNMARK, FIND, DELETE, TODO, DEADLINE, EVENT, BYE;
 }
