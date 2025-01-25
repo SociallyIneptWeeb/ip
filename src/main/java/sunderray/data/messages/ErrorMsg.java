@@ -1,5 +1,8 @@
 package sunderray.data.messages;
 
+/**
+ * Contains error messages to display to the user.
+ */
 public class ErrorMsg {
     public static final String UNKNOWN_COMMAND = """
             W-What?! I couldn't understand what you said, okay?

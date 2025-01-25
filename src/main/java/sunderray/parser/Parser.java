@@ -15,10 +15,20 @@ import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Parses user input into a command that can be executed.
+ */
 public class Parser {
     private static final Pattern eventpattern = Pattern.compile("event (.+?) /from (.+?) /to (.+)");
     private static final Pattern deadlinePattern = Pattern.compile("deadline (.+?) /by (.+)");
 
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param taskList user's current tasklist
+     * @param userInput full user input string
+     * @return the command based on the user input
+     */
     public Command parse(TaskList taskList, String userInput) {
         String[] words = userInput.trim().split(" ", 2);
         CommandWord commandWord;

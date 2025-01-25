@@ -1,5 +1,8 @@
 package sunderray.data.messages;
 
+/**
+ * Contains informational messages to display to the user.
+ */
 public class InfoMsg {
     public static final String DIVIDER =
             "========================================================================================";

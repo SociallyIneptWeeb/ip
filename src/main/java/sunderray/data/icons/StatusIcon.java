@@ -1,5 +1,8 @@
 package sunderray.data.icons;
 
+/**
+ * Contains the readable and parsable icons for a task's status.
+ */
 public enum StatusIcon {
     DONE("X", "1"),
     NOT_DONE(" ", "0");

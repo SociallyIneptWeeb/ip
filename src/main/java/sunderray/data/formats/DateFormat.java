@@ -1,5 +1,8 @@
 package sunderray.data.formats;
 
+/**
+ * Contains the readable and parsable format for dates
+ */
 public enum DateFormat {
     READABLE("MMM dd yyyy"),
     PARSABLE("yyyy-MM-dd");

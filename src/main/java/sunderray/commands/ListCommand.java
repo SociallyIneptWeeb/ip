@@ -3,6 +3,9 @@ package sunderray.commands;
 import sunderray.data.messages.InfoMsg;
 import sunderray.tasklist.TaskList;
 
+/**
+ * Lists all tasks or informs if there are none.
+ */
 public class ListCommand extends Command {
     private final TaskList taskList;
 
