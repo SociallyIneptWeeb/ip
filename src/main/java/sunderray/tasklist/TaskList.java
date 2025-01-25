@@ -87,6 +87,9 @@ public class TaskList {
         return sb.toString().trim();
     }
 
+    /**
+     * Returns a formatted string which shows how many tasks are loaded from the data file.
+     */
     public String toLoadedTasksDisplay() {
         return String.format(InfoMsg.LOAD_DATA_FILE, getNumTasks(), getNumTasks() == 1 ? "task" : "tasks");
     }
