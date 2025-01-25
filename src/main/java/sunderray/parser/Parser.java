@@ -81,6 +81,13 @@ public class Parser {
 
             return new MarkCommand(taskList, taskId, commandWord.equals(CommandWord.MARK));
 
+        case FIND:
+            if (words.length < 2) {
+                return new InvalidCommand(String.format(ErrorMsg.WRONG_FORMAT, "find <keyword>"));
+            }
+
+            return new FindCommand(taskList, words[1]);
+
         case TODO:
             if (words.length < 2) {
                 return new InvalidCommand(String.format(ErrorMsg.WRONG_FORMAT, "todo <description>"));

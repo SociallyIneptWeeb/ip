@@ -56,6 +56,14 @@ you or anything. I just didn't want you messing things up, okay?
 2.	[E][X] idol show (from: sat 3pm to: 5pm)
 ========================================================================================
 You: ========================================================================================
+Ray: F-Fine, here are the tasks that match your keyword...
+Don’t go thinking I did this for you or anything!
+1.	[E][X] idol show (from: sat 3pm to: 5pm)
+========================================================================================
+You: ========================================================================================
+Ray: Hmph, none of your tasks matched the keyword you gave me!
+========================================================================================
+You: ========================================================================================
 Ray: W-What?! I couldn't understand what you said, okay?
 It's not like it's my fault or anything!
 Just… ugh, repeat it already, and don't make me wait!
@@ -75,6 +83,10 @@ It's not like I enjoy pointing out your mistakes or anything…
 You: ========================================================================================
 Ray: Ugh, seriously? Be more clear! I can't read your mind, you know!
 Just give it to me straight in this format: todo <description>
+========================================================================================
+You: ========================================================================================
+Ray: Ugh, seriously? Be more clear! I can't read your mind, you know!
+Just give it to me straight in this format: find <keyword>
 ========================================================================================
 You: ========================================================================================
 Ray: Ugh, seriously? Be more clear! I can't read your mind, you know!

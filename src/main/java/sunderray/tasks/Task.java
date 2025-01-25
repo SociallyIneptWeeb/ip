@@ -30,6 +30,11 @@ public abstract class Task {
     public String toParsableString() {
         return String.format("%s | %s | %s", this.getTaskIcon(), this.getParsableStatusIcon(), this.description);
     }
+
+    public boolean hasKeyword(String keyword) {
+        return description.toLowerCase().contains(keyword.toLowerCase());
+    }
+
     @Override
     public String toString() {
         return String.format("[%s][%s] %s", this.getTaskIcon(), this.getStatusIcon(), this.description);

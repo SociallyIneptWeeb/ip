@@ -27,6 +27,11 @@ public class InfoMsg {
     public static final String DELETE_TASK = """
             F-Fine, I've deleted the task for you!
             I just didn't want to see it cluttering things up, okay?!""";
+    public static final String LIST_MATCHED_TASKS = """
+            F-Fine, here are the tasks that match your keyword...
+            Don’t go thinking I did this for you or anything!""";
+    public static final String NO_TASKS_MATCHED = """
+            Hmph, none of your tasks matched the keyword you gave me!""";
     public static final String LOAD_DATA_FILE = """
              I've loaded your saved tasks and it looks like you've got %d %s, okay?
              Just don't mess it up from here!""";
