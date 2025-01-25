@@ -4,6 +4,9 @@ import sunderray.data.messages.InfoMsg;
 import sunderray.tasklist.TaskList;
 import sunderray.tasks.Task;
 
+/**
+ * Sets a task in the list as done or not using its index in the list.
+ */
 public class MarkCommand extends Command {
     private final TaskList taskList;
     private final int taskId;

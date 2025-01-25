@@ -4,6 +4,9 @@ import sunderray.data.messages.InfoMsg;
 import sunderray.tasklist.TaskList;
 import sunderray.tasks.Task;
 
+/**
+ * Deletes a task identified using its index in the list.
+ */
 public class DeleteCommand extends Command {
     private final TaskList taskList;
     private final int taskId;

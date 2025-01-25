@@ -16,6 +16,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
+/**
+ * Represents the file used to store the users' tasks.
+ */
 public class Storage {
     private final String filepath = "data/tasks.txt";
 
@@ -33,6 +36,12 @@ public class Storage {
 
     }
 
+    /**
+     * Returns true if the task is valid based on the details.
+     *
+     * @param details the task details as a string array.
+     * @return whether the details provided makes up a valid task.
+     */
     private boolean isValidTask(String[] details) {
         String taskIcon = details[0];
 
@@ -52,6 +61,13 @@ public class Storage {
         return Arrays.stream(StatusIcon.values()).anyMatch(icon -> icon.toParsableString().equals(statusIcon));
     }
 
+    /**
+     * Parses a line in the data file into a task.
+     *
+     * @param line the task represented as a string.
+     * @return the parsed task.
+     * @throws ParseTaskException if there was an error in the task format.
+     */
     private Task parseTask(String line) throws ParseTaskException {
         String[] details = line.split("\\|");
         for (int i = 0; i < details.length; i++) {
@@ -83,6 +99,13 @@ public class Storage {
         return task;
     }
 
+    /**
+     * Loads the tasks from the data file and returns them.
+     * Returns an empty TaskList if the data in the file is corrupted, or in the wrong format.
+     *
+     * @throws IOException if there were errors reading from the file.
+     * @throws ParseTaskException if there were errors parsing the text into tasks.
+     */
     public TaskList load() throws IOException, ParseTaskException {
         TaskList taskList = new TaskList();
         try (BufferedReader br = new BufferedReader(new FileReader(this.filepath))) {
@@ -98,6 +121,12 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Saves tasks to the data file.
+     *
+     * @param taskLines the tasks to write to the file in a parsable format.
+     * @throws WriteStorageFileException if there were errors writing to file.
+     */
     public void store(String[] taskLines) throws WriteStorageFileException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.filepath, false))) {
             for (String taskLine : taskLines) {
@@ -109,18 +138,27 @@ public class Storage {
         }
     }
 
+    /**
+     * Signals that the data file could not be created.
+     */
     public static class CreateStorageFileException extends Exception {
         CreateStorageFileException(String message) {
             super(message);
         }
     }
 
+    /**
+     * Signals that tasks could not be written to the data file.
+     */
     public static class WriteStorageFileException extends Exception {
         WriteStorageFileException(String message) {
             super(message);
         }
     }
 
+    /**
+     * Signals that a line in the data file could not be parsed into a task.
+     */
     public static class ParseTaskException extends Exception {
         ParseTaskException(String message) {
             super(message);

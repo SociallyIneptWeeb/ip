@@ -4,6 +4,9 @@ import sunderray.data.messages.InfoMsg;
 import sunderray.tasklist.TaskList;
 import sunderray.tasks.Task;
 
+/**
+ * Adds a task to the list.
+ */
 public class AddCommand extends Command {
     private final TaskList taskList;
     private final Task task;

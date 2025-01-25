@@ -1,5 +1,8 @@
 package sunderray.data.icons;
 
+/**
+ * Contains the readable and parsable icons for a task's type.
+ */
 public enum TaskIcon {
     TODO("T"),
     DEADLINE("D"),

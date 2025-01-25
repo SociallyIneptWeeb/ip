@@ -2,6 +2,9 @@ package sunderray.tasks;
 
 import sunderray.data.icons.StatusIcon;
 
+/**
+ * Represents a task in the list.
+ */
 public abstract class Task {
     private final String description;
     private Boolean isDone = false;

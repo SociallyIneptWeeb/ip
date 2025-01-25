@@ -2,6 +2,9 @@ package sunderray.tasks;
 
 import sunderray.data.icons.TaskIcon;
 
+/**
+ * An event that has a description and two strings that represent when it starts and ends.
+ */
 public class Event extends ToDo {
     private final String from;
     private final String to;
