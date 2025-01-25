@@ -17,8 +17,9 @@ public class ParserTest {
         parser = new Parser();
         taskList = new TaskList();
     }
+
     @Test
-    public void invalidCommandTest(){
+    public void parse_invalidCommand_unknownCommandMessage(){
         String input = "blah";
         String actualOutput = parser.parse(taskList, input).execute();
         String expectedOutput = ErrorMsg.UNKNOWN_COMMAND;
@@ -26,7 +27,7 @@ public class ParserTest {
     }
 
     @Test
-    public void noTasksListTest() {
+    public void parse_listNoTasks_noTasksMessage() {
         String input = "list";
         String actualOutput = parser.parse(taskList, input).execute();
         String expectedOutput = InfoMsg.NO_TASKS;
@@ -34,7 +35,7 @@ public class ParserTest {
     }
 
     @Test
-    public void invalidTaskIdTest() {
+    public void parse_markInvalidTaskId_invalidIdMessage() {
         String input = "mark -1";
         String actualOutput = parser.parse(taskList, input).execute();
         String expectedOutput = ErrorMsg.INVALID_ID;
@@ -42,7 +43,7 @@ public class ParserTest {
     }
 
     @Test
-    public void wrongFormatTest() {
+    public void parse_markWrongFormat_wrongFormatMessage() {
         String input = "unmark blah";
         String actualOutput = parser.parse(taskList, input).execute();
         String expectedOutput = String.format(ErrorMsg.WRONG_FORMAT, "unmark <task-id>");
