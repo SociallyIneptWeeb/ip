@@ -5,6 +5,7 @@ import sunderray.commands.Command;
 import sunderray.commands.CommandWord;
 import sunderray.commands.DeleteCommand;
 import sunderray.commands.ExitCommand;
+import sunderray.commands.FindCommand;
 import sunderray.commands.InvalidCommand;
 import sunderray.commands.ListCommand;
 import sunderray.commands.MarkCommand;
