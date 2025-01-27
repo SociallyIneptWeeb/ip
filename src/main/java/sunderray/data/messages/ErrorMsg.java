@@ -7,7 +7,7 @@ public class ErrorMsg {
     public static final String UNKNOWN_COMMAND = """
             W-What?! I couldn't understand what you said, okay? \
             It's not like it's my fault or anything! \
-            Just… ugh, repeat it already, and don't make me wait!""";
+            Just... ugh, repeat it already, and don't make me wait!""";
     public static final String WRONG_FORMAT = """
             Ugh, seriously? Be more clear! I can't read your mind, you know! \
             Just give it to me straight in this format: %s""";

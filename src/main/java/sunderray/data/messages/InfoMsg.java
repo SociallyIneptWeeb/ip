@@ -5,7 +5,7 @@ package sunderray.data.messages;
  */
 public class InfoMsg {
     public static final String INTRO = """
-            Ray: H-Hey! It's not like I want to introduce myself or anything, but... my name is \
+            H-Hey! It's not like I want to introduce myself or anything, but... my name is \
             Sunder Ray. W-What do you want me to do for you, huh? It's not like I care \
             or anything! (,,>.<,,) b-baka!""";
     public static final String END = """
