@@ -19,7 +19,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
 
             Image stageIcon = new Image(Objects.requireNonNull(
-                    this.getClass().getResourceAsStream("/images/message-icon.png")));
+                    Main.class.getResourceAsStream("/images/message-icon.png")));
             stage.getIcons().add(stageIcon);
 
             Scene scene = new Scene(ap);
