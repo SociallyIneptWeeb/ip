@@ -49,13 +49,34 @@ public class DialogBox extends HBox {
         dialog.getStyleClass().add("reply-label");
     }
 
+    private void changeDialogStyle(String commandClass) {
+        switch (commandClass) {
+        case "AddCommand":
+            // Fallthrough
+
+        case "MarkCommand":
+            // Fallthrough
+
+        case "DeleteCommand":
+            dialog.getStyleClass().add("success-label");
+            break;
+
+        case "InvalidCommand":
+            dialog.getStyleClass().add("error-label");
+            break;
+        default:
+            // Do nothing
+        }
+    }
+
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
-    public static DialogBox getSunderRayDialog(String text, Image img) {
+    public static DialogBox getSunderRayDialog(String text, Image img, String commandClass) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.changeDialogStyle(commandClass);
         return db;
     }
 }

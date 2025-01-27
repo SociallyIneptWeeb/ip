@@ -55,7 +55,8 @@ public class MainWindow extends AnchorPane {
 
         String welcomeMessage = String.format("%s%n%s", InfoMsg.INTRO, taskList.toLoadedTasksDisplay());
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        dialogContainer.getChildren().add(DialogBox.getSunderRayDialog(welcomeMessage, sunderRayImage));
+        dialogContainer.getChildren().add(
+                DialogBox.getSunderRayDialog(welcomeMessage, sunderRayImage, Command.class.getSimpleName()));
     }
 
     /**
@@ -68,9 +69,11 @@ public class MainWindow extends AnchorPane {
 
         String response;
         Command command;
+        String commandClass;
 
         try {
             command = parser.parse(taskList, input);
+            commandClass = command.getClass().getSimpleName();
             response = command.execute();
             storage.store(taskList.toParsableLines());
         } catch (Exception e) {
@@ -79,7 +82,7 @@ public class MainWindow extends AnchorPane {
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getSunderRayDialog(response, sunderRayImage)
+                DialogBox.getSunderRayDialog(response, sunderRayImage, commandClass)
         );
         userInput.clear();
 
