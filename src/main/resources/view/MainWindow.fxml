@@ -18,6 +18,7 @@
             fx:controller="sunderray.ui.MainWindow">
     <children>
         <TextField fx:id="userInput"
+                   promptText="Type here..."
                    layoutY="558.0"
                    onAction="#handleUserInput"
                    prefHeight="41.0"
