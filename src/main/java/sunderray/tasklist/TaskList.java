@@ -76,11 +76,11 @@ public class TaskList {
      */
     public String toMatchedTasksDisplay(String keyword) {
         StringBuilder sb = new StringBuilder();
-        int numMatched = 0;
+        int numMatched = 1;
         for (int i = 0; i < getNumTasks(); i++) {
             Task task = tasks.get(i);
             if (task.hasKeyword(keyword)) {
-                sb.append(String.format("%d.\t%s%n", numMatched++ + 1, tasks.get(i)));
+                sb.append(String.format("%d.\t%s%n", numMatched++, task));
             }
         }
 

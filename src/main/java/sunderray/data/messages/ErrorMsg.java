@@ -13,7 +13,7 @@ public class ErrorMsg {
             Just give it to me straight in this format: %s""";
     public static final String INVALID_ID = """
             Ugh, seriously?! Just pick a valid task ID already! \
-            It's not like I enjoy pointing out your mistakes or anything…""";
+            It's not like I enjoy pointing out your mistakes or anything...""";
     public static final String CORRUPTED_DATA = """
             The data file with your saved tasks is corrupted! \
             I'm not cleaning up your mess, so you'd better fix or delete it, got it?!""";

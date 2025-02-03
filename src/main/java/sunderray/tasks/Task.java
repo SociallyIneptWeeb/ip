@@ -18,17 +18,17 @@ public abstract class Task {
     }
 
     private String getStatusIcon() {
-        return (isDone ? StatusIcon.DONE.toString() : StatusIcon.NOT_DONE.toString());
+        return isDone ? StatusIcon.DONE.toString() : StatusIcon.NOT_DONE.toString();
     }
 
     private String getParsableStatusIcon() {
-        return (isDone ? StatusIcon.DONE.toParsableString() : StatusIcon.NOT_DONE.toParsableString());
+        return isDone ? StatusIcon.DONE.toParsableString() : StatusIcon.NOT_DONE.toParsableString();
     }
 
     protected abstract String getTaskIcon();
 
     public String toParsableString() {
-        return String.format("%s | %s | %s", this.getTaskIcon(), this.getParsableStatusIcon(), this.description);
+        return String.format("%s | %s | %s", getTaskIcon(), getParsableStatusIcon(), description);
     }
 
     public boolean hasKeyword(String keyword) {
@@ -37,6 +37,6 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s", this.getTaskIcon(), this.getStatusIcon(), this.description);
+        return String.format("[%s][%s] %s", getTaskIcon(), getStatusIcon(), description);
     }
 }

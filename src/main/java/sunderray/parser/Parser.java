@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  * Parses user input into a command that can be executed.
  */
 public class Parser {
-    private static final Pattern eventpattern = Pattern.compile("event (.+?) /from (.+?) /to (.+)");
+    private static final Pattern eventPattern = Pattern.compile("event (.+?) /from (.+?) /to (.+)");
     private static final Pattern deadlinePattern = Pattern.compile("deadline (.+?) /by (.+)");
 
     /**
@@ -101,7 +101,6 @@ public class Parser {
             return new AddCommand(taskList, task);
 
         case DEADLINE:
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DateFormat.PARSABLE.toString());
             matcher = deadlinePattern.matcher(userInput);
             Command invalidCommand = new InvalidCommand(String.format(
                     ErrorMsg.WRONG_FORMAT,
@@ -109,6 +108,7 @@ public class Parser {
 
             if (matcher.find()) {
                 try {
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DateFormat.PARSABLE.toString());
                     LocalDate date = LocalDate.parse(matcher.group(2), dtf);
                     task = new Deadline(matcher.group(1), date);
                     return new AddCommand(taskList, task);
@@ -120,7 +120,7 @@ public class Parser {
             return invalidCommand;
 
         case EVENT:
-            matcher = eventpattern.matcher(userInput);
+            matcher = eventPattern.matcher(userInput);
             if (matcher.find()) {
                 task = new Event(matcher.group(1), matcher.group(2), matcher.group(3));
                 return new AddCommand(taskList, task);
