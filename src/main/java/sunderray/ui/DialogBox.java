@@ -42,9 +42,9 @@ public class DialogBox extends HBox {
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-        Collections.reverse(tmp);
-        getChildren().setAll(tmp);
+        ObservableList<Node> nodes = FXCollections.observableArrayList(this.getChildren());
+        Collections.reverse(nodes);
+        getChildren().setAll(nodes);
         setAlignment(Pos.TOP_LEFT);
         dialog.getStyleClass().add("reply-label");
     }
@@ -74,9 +74,9 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getSunderRayDialog(String text, Image img, String commandClass) {
-        var db = new DialogBox(text, img);
-        db.flip();
-        db.changeDialogStyle(commandClass);
-        return db;
+        var dialogBox = new DialogBox(text, img);
+        dialogBox.flip();
+        dialogBox.changeDialogStyle(commandClass);
+        return dialogBox;
     }
 }
