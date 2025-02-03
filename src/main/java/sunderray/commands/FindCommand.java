@@ -17,6 +17,9 @@ public class FindCommand extends Command {
 
     @Override
     public String execute() {
+        assert taskList != null;
+        assert keyword != null && !keyword.isBlank();
+
         String result = taskList.toMatchedTasksDisplay(keyword);
         if (result.isBlank()) {
             return InfoMsg.NO_TASKS_MATCHED;
