@@ -15,6 +15,8 @@ public class ListCommand extends Command {
 
     @Override
     public String execute() {
+        assert taskList != null;
+
         if (taskList.getNumTasks() == 0) {
             return InfoMsg.NO_TASKS;
         }

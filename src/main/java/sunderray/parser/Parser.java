@@ -39,6 +39,9 @@ public class Parser {
      */
     public Command parse(TaskList taskList, String userInput) {
         String[] words = userInput.trim().split(" ", 2);
+
+        assert words.length > 0;
+
         CommandWord commandWord;
         try {
             commandWord = CommandWord.valueOf(words[0].toUpperCase());

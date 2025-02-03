@@ -18,6 +18,9 @@ public class AddCommand extends Command {
 
     @Override
     public String execute() {
+        assert task != null;
+        assert taskList != null;
+
         taskList.addTask(task);
         return String.format(
                 "%s%n\t%s%n%s",

@@ -18,6 +18,9 @@ public class DeleteCommand extends Command {
 
     @Override
     public String execute() {
+        assert taskList != null;
+        assert taskId >= 0 && taskId < taskList.getNumTasks();
+
         Task task = taskList.deleteTask(taskId);
         return String.format(
                 "%s%n\t%s%n%s",

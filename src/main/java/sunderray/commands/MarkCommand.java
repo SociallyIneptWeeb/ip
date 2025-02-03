@@ -20,6 +20,9 @@ public class MarkCommand extends Command {
 
     @Override
     public String execute() {
+        assert taskList != null;
+        assert taskId >= 0 && taskId < taskList.getNumTasks();
+
         Task task = taskList.markTask(taskId, isDone);
         return String.format(
                 "%s%n\t%s",
