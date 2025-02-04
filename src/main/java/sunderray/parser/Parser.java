@@ -15,8 +15,10 @@ import sunderray.tasklist.TaskList;
 import sunderray.tasks.Deadline;
 import sunderray.tasks.Event;
 import sunderray.tasks.Task;
+import sunderray.tasks.Timed;
 import sunderray.tasks.ToDo;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -29,6 +31,7 @@ import java.util.regex.Pattern;
 public class Parser {
     private static final Pattern eventPattern = Pattern.compile("event (.+?) /from (.+?) /to (.+)");
     private static final Pattern deadlinePattern = Pattern.compile("deadline (.+?) /by (.+)");
+    private static final Pattern timedPattern = Pattern.compile("timed (.+?) /duration (\\d{2}):([0-5][0-9])");
 
     /**
      * Parses user input into command for execution.
@@ -129,6 +132,19 @@ public class Parser {
             return new InvalidCommand(String.format(
                     ErrorMsg.WRONG_FORMAT,
                     "event <description> /from <when> /to <when>"));
+
+        case TIMED:
+            matcher = timedPattern.matcher(userInput);
+            if (matcher.find()) {
+                Duration duration = Duration.ofHours(Integer.parseInt(matcher.group(2)));
+                duration = duration.plusMinutes(Integer.parseInt(matcher.group(3)));
+                task = new Timed(matcher.group(1), duration);
+                return new AddCommand(taskList, task);
+            }
+
+            return new InvalidCommand(String.format(
+                    ErrorMsg.WRONG_FORMAT,
+                    "timed <description> /duration <HH:MM>"));
 
         default:
             return new InvalidCommand(ErrorMsg.UNKNOWN_COMMAND);
