@@ -6,7 +6,8 @@ package sunderray.data.icons;
 public enum TaskIcon {
     TODO("T"),
     DEADLINE("D"),
-    EVENT("E");
+    EVENT("E"),
+    TIMED("C");
 
     private final String type;
 

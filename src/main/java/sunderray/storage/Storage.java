@@ -8,6 +8,7 @@ import sunderray.tasklist.TaskList;
 import sunderray.tasks.Deadline;
 import sunderray.tasks.Event;
 import sunderray.tasks.Task;
+import sunderray.tasks.Timed;
 import sunderray.tasks.ToDo;
 
 import java.io.BufferedReader;
@@ -16,6 +17,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -94,6 +96,7 @@ public class Storage {
                         description,
                         LocalDate.parse(details[3], DateTimeFormatter.ofPattern(DateFormat.PARSABLE.toString())));
                 case "E" -> new Event(description, details[3], details[4]);
+                case "C" -> new Timed(description, Duration.parse(details[3]));
                 default -> throw new ParseTaskException(ErrorMsg.PARSE_TASK_ERROR);
             };
         } catch (DateTimeParseException e) {
