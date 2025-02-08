@@ -27,7 +27,7 @@ public class InfoMsg {
             I just didn't want to see it cluttering things up, okay?!""";
     public static final String LIST_MATCHED_TASKS = """
             F-Fine, here are the tasks that match your keyword... \
-            Don’t go thinking I did this for you or anything!""";
+            Don't go thinking I did this for you or anything!""";
     public static final String NO_TASKS_MATCHED = """
             Hmph, none of your tasks matched the keyword you gave me!""";
     public static final String LOAD_DATA_FILE = """
