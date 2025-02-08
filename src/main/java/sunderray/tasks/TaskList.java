@@ -1,7 +1,6 @@
-package sunderray.tasklist;
+package sunderray.tasks;
 
 import sunderray.data.messages.InfoMsg;
-import sunderray.tasks.Task;
 
 import java.util.ArrayList;
 

@@ -4,7 +4,7 @@ import sunderray.data.formats.DateFormat;
 import sunderray.data.icons.StatusIcon;
 import sunderray.data.icons.TaskIcon;
 import sunderray.data.messages.ErrorMsg;
-import sunderray.tasklist.TaskList;
+import sunderray.tasks.TaskList;
 import sunderray.tasks.Deadline;
 import sunderray.tasks.Event;
 import sunderray.tasks.Task;

@@ -14,7 +14,7 @@ import sunderray.commands.ExitCommand;
 import sunderray.data.messages.InfoMsg;
 import sunderray.parser.Parser;
 import sunderray.storage.Storage;
-import sunderray.tasklist.TaskList;
+import sunderray.tasks.TaskList;
 
 import java.io.IOException;
 import java.util.Objects;

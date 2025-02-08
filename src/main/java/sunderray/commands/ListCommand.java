@@ -1,7 +1,7 @@
 package sunderray.commands;
 
 import sunderray.data.messages.InfoMsg;
-import sunderray.tasklist.TaskList;
+import sunderray.tasks.TaskList;
 
 /**
  * Lists all tasks or informs if there are none.

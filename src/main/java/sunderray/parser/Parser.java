@@ -11,7 +11,7 @@ import sunderray.commands.ListCommand;
 import sunderray.commands.MarkCommand;
 import sunderray.data.formats.DateFormat;
 import sunderray.data.messages.ErrorMsg;
-import sunderray.tasklist.TaskList;
+import sunderray.tasks.TaskList;
 import sunderray.tasks.Deadline;
 import sunderray.tasks.Event;
 import sunderray.tasks.Task;

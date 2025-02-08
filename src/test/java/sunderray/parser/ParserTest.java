@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sunderray.data.messages.ErrorMsg;
 import sunderray.data.messages.InfoMsg;
-import sunderray.tasklist.TaskList;
+import sunderray.tasks.TaskList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
