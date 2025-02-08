@@ -27,7 +27,7 @@ public class Deadline extends ToDo {
         return String.format(
                 "%s | %s",
                 super.toParsableString(),
-                by.format(DateTimeFormatter.ofPattern(DateFormat.PARSABLE.toString())));
+                by.format(DateTimeFormatter.ofPattern(DateFormat.PARSABLE)));
     }
 
     @Override
@@ -35,6 +35,6 @@ public class Deadline extends ToDo {
         return String.format(
                 "%s (by: %s)",
                 super.toString(),
-                by.format(DateTimeFormatter.ofPattern(DateFormat.READABLE.toString())));
+                by.format(DateTimeFormatter.ofPattern(DateFormat.READABLE)));
     }
 }

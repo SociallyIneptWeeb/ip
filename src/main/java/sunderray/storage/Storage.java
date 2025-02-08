@@ -94,7 +94,7 @@ public class Storage {
                 case "T" -> new ToDo(description);
                 case "D" -> new Deadline(
                         description,
-                        LocalDate.parse(details[3], DateTimeFormatter.ofPattern(DateFormat.PARSABLE.toString())));
+                        LocalDate.parse(details[3], DateTimeFormatter.ofPattern(DateFormat.PARSABLE)));
                 case "E" -> new Event(description, details[3], details[4]);
                 case "C" -> new Timed(description, Duration.parse(details[3]));
                 default -> throw new ParseTaskException(ErrorMsg.PARSE_TASK_ERROR);

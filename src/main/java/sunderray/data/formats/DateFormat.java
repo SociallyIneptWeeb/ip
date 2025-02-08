@@ -3,18 +3,7 @@ package sunderray.data.formats;
 /**
  * Contains the readable and parsable format for dates
  */
-public enum DateFormat {
-    READABLE("MMM dd yyyy"),
-    PARSABLE("yyyy-MM-dd");
-
-    private final String format;
-
-    DateFormat(String format) {
-        this.format = format;
-    }
-
-    @Override
-    public String toString() {
-        return this.format;
-    }
+public class DateFormat {
+    public static final String READABLE = "MMM dd yyyy";
+    public static final String PARSABLE = "yyyy-MM-dd";
 }

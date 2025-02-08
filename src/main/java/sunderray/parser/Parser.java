@@ -111,7 +111,7 @@ public class Parser {
 
             if (matcher.find()) {
                 try {
-                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DateFormat.PARSABLE.toString());
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DateFormat.PARSABLE);
                     LocalDate date = LocalDate.parse(matcher.group(2), dtf);
                     task = new Deadline(matcher.group(1), date);
                     return new AddCommand(taskList, task);
