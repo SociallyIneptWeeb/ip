@@ -72,7 +72,7 @@ public class Parser {
         case DELETE:
             try {
                 taskId = Integer.parseInt(words[1]) - 1;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 return new InvalidCommand(String.format(
                         ErrorMsg.WRONG_FORMAT,
                         String.format("%s <task-id>", commandWord.name().toLowerCase())));
