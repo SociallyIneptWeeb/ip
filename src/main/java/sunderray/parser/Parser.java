@@ -14,7 +14,6 @@ import sunderray.data.messages.ErrorMsg;
 import sunderray.tasks.TaskList;
 import sunderray.tasks.Deadline;
 import sunderray.tasks.Event;
-import sunderray.tasks.Task;
 import sunderray.tasks.Timed;
 import sunderray.tasks.ToDo;
 
@@ -42,7 +41,6 @@ public class Parser {
      */
     public Command parse(TaskList taskList, String userInput) {
         String[] words = userInput.trim().split(" ", 2);
-
         assert words.length > 0;
 
         CommandWord commandWord;
@@ -52,102 +50,81 @@ public class Parser {
             return new InvalidCommand(ErrorMsg.UNKNOWN_COMMAND);
         }
 
-        int taskId;
-        Task task;
-        Matcher matcher;
+        return switch (commandWord) {
+            case BYE -> new ExitCommand();
+            case LIST -> new ListCommand(taskList);
+            case MARK, UNMARK, DELETE -> handleTaskModification(taskList, words, commandWord);
+            case FIND -> handleFind(taskList, words);
+            case TODO -> handleToDo(taskList, words);
+            case DEADLINE -> handleDeadline(taskList, userInput);
+            case EVENT -> handleEvent(taskList, userInput);
+            case TIMED -> handleTimed(taskList, userInput);
+            default -> new InvalidCommand(ErrorMsg.UNKNOWN_COMMAND);
+        };
+    }
 
-        switch (commandWord) {
-        case BYE:
-            return new ExitCommand();
-
-        case LIST:
-            return new ListCommand(taskList);
-
-        case MARK:
-            // Fallthrough
-
-        case UNMARK:
-            // Fallthrough
-
-        case DELETE:
-            try {
-                taskId = Integer.parseInt(words[1]) - 1;
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                return new InvalidCommand(String.format(
-                        ErrorMsg.WRONG_FORMAT,
-                        String.format("%s <task-id>", commandWord.name().toLowerCase())));
-            }
-
+    private static Command handleTaskModification(TaskList taskList, String[] words, CommandWord commandWord) {
+        try {
+            int taskId = Integer.parseInt(words[1]) - 1;
             if (taskId < 0 || taskId >= taskList.getNumTasks()) {
                 return new InvalidCommand(ErrorMsg.INVALID_ID);
             }
 
-            if (commandWord.equals(CommandWord.DELETE)) {
-                return new DeleteCommand(taskList, taskId);
-            }
-
-            return new MarkCommand(taskList, taskId, commandWord.equals(CommandWord.MARK));
-
-        case FIND:
-            if (words.length < 2) {
-                return new InvalidCommand(String.format(ErrorMsg.WRONG_FORMAT, "find <keyword>"));
-            }
-
-            return new FindCommand(taskList, words[1]);
-
-        case TODO:
-            if (words.length < 2) {
-                return new InvalidCommand(String.format(ErrorMsg.WRONG_FORMAT, "todo <description>"));
-            }
-
-            task = new ToDo(words[1]);
-            return new AddCommand(taskList, task);
-
-        case DEADLINE:
-            matcher = deadlinePattern.matcher(userInput);
-            Command invalidCommand = new InvalidCommand(String.format(
-                    ErrorMsg.WRONG_FORMAT,
-                    String.format("deadline <description> /by <%s>", DateFormat.PARSABLE)));
-
-            if (matcher.find()) {
-                try {
-                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DateFormat.PARSABLE);
-                    LocalDate date = LocalDate.parse(matcher.group(2), dtf);
-                    task = new Deadline(matcher.group(1), date);
-                    return new AddCommand(taskList, task);
-                } catch (DateTimeParseException e) {
-                    return invalidCommand;
-                }
-            }
-
-            return invalidCommand;
-
-        case EVENT:
-            matcher = eventPattern.matcher(userInput);
-            if (matcher.find()) {
-                task = new Event(matcher.group(1), matcher.group(2), matcher.group(3));
-                return new AddCommand(taskList, task);
-            }
-
+            return commandWord.equals(CommandWord.DELETE) ?
+                    new DeleteCommand(taskList, taskId) :
+                    new MarkCommand(taskList, taskId, commandWord.equals(CommandWord.MARK));
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             return new InvalidCommand(String.format(
                     ErrorMsg.WRONG_FORMAT,
-                    "event <description> /from <when> /to <when>"));
-
-        case TIMED:
-            matcher = timedPattern.matcher(userInput);
-            if (matcher.find()) {
-                Duration duration = Duration.ofHours(Integer.parseInt(matcher.group(2)));
-                duration = duration.plusMinutes(Integer.parseInt(matcher.group(3)));
-                task = new Timed(matcher.group(1), duration);
-                return new AddCommand(taskList, task);
-            }
-
-            return new InvalidCommand(String.format(
-                    ErrorMsg.WRONG_FORMAT,
-                    "timed <description> /duration <HH:MM>"));
-
-        default:
-            return new InvalidCommand(ErrorMsg.UNKNOWN_COMMAND);
+                    String.format("%s <task-id>", commandWord.name().toLowerCase())));
         }
+    }
+
+    private static Command handleFind(TaskList taskList, String[] words) {
+        return words.length < 2 ?
+                new InvalidCommand(String.format(ErrorMsg.WRONG_FORMAT, "find <keyword>")) :
+                new FindCommand(taskList, words[1]);
+    }
+
+    private static Command handleToDo(TaskList taskList, String[] words) {
+        return words.length < 2 ?
+                new InvalidCommand(String.format(ErrorMsg.WRONG_FORMAT, "todo <description>")) :
+                new AddCommand(taskList, new ToDo(words[1]));
+    }
+
+    private static Command handleDeadline(TaskList taskList, String userInput) {
+        Matcher matcher = deadlinePattern.matcher(userInput);
+        Command invalidCommand = new InvalidCommand(String.format(
+                ErrorMsg.WRONG_FORMAT, "deadline <description> /by <yyyy-MM-dd>"));
+
+        if (matcher.find()) {
+            try {
+                LocalDate date = LocalDate.parse(matcher.group(2), DateTimeFormatter.ofPattern(DateFormat.PARSABLE));
+                return new AddCommand(taskList, new Deadline(matcher.group(1), date));
+            } catch (DateTimeParseException e) {
+                return invalidCommand;
+            }
+        }
+
+        return invalidCommand;
+    }
+
+    private static Command handleEvent(TaskList taskList, String userInput) {
+        Matcher matcher = eventPattern.matcher(userInput);
+        return matcher.find() ?
+                new AddCommand(taskList, new Event(matcher.group(1), matcher.group(2), matcher.group(3))) :
+                new InvalidCommand(String.format(
+                        ErrorMsg.WRONG_FORMAT, "event <description> /from <when> /to <when>"));
+    }
+
+    private static Command handleTimed(TaskList taskList, String userInput) {
+        Matcher matcher = timedPattern.matcher(userInput);
+        if (matcher.find()) {
+            Duration duration = Duration.ofHours(Integer.parseInt(matcher.group(2)))
+                    .plusMinutes(Integer.parseInt(matcher.group(3)));
+            return new AddCommand(taskList, new Timed(matcher.group(1), duration));
+        }
+
+        return new InvalidCommand(String.format(ErrorMsg.WRONG_FORMAT, "timed <description> /duration <HH:MM>"));
     }
 }
